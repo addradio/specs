@@ -17,6 +17,11 @@ The following conventions are valid for the whole section:
 * Encoding is always UTF-8
 * Every line has to end with character CRLF (0x13 0x10)
 
+### Communication Basis
+
+PUT
+TBD
+
 ### Example Client Server Communication 
 
 **Initial request sent from source client to server**
@@ -45,10 +50,23 @@ Server: <server-identifier>
 ```
 
 ### Authentication
-Depending on the mountpoint's configuration, the server 
+Depending on the mountpoint's configuration, the server expects credentials 
+before it allwos to accept the source stream. If a source client does not provide
+userid and password in such a case, the server will respond with:
 
 ```http
+HTTP/1.1 401 Unauthorized
+Date: Fri, 31 Dec 1999 23:59:59 UTC
+Server: <server-identifier>
+```
+
+Icecast's authentication is based on [RFC 7617][1]. The source client needs to 
+add the following header to its request to provide the requested credentials:
+
+```http
+...
 Authorization: Basic <basic-credentials see definition below>
+...
 ```
 **Definitions**
 ```ini
@@ -59,9 +77,12 @@ userid             = *<TEXT excluding ":">
 password           = *TEXT
 ```
 
-
+### 100-Continue
 
 
 ## Tested / Certified Source Clients
 
 ### Clients that are not tested but should be ok
+
+## References
+[1]: https://tools.ietf.org/html/rfc7617
