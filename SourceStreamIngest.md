@@ -9,14 +9,14 @@ method, which isn't conform to HTTP standards.
 * [**Protocol Specification**](#protocol-specification)
   * [**Conventions**](#conventions)
   * [**Communication Basics**](#communication-basics)
-  * Example Client Server Communication
-  * Response Status Codes
-  * 100-Continue
-  * Authentication
-  * Content Types
-  * Meta Data
-* Tested / Certified Source Clients
-  * Clients that are not tested but should be ok
+  * [**Example Client Server Communication**](#example-client-server-communication)
+  * [**Response Status Codes**](#response-status-codes)
+  * [**100-Continue**](#100-continue)
+  * [**Authentication**](#authentication)
+  * [**Content Types**](#content-types)
+  * [**Meta Data**](#meta-data)
+* [**Tested / Certified Source Clients**](#)
+  * [**Clients that are not tested but should be ok**](#)
 
 ## Protocol Specification
 
