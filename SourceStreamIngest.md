@@ -51,6 +51,43 @@ Server: <server-identifier>
 ```
 ### Response Status Codes
 
+[//]: # (SEBASTIAN Is 200 sent at all?)
+Status Code | Description
+------------|-------------
+100 Continue                    | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`
+200 OK                          | Sent after source client stopped
+401 You need to authenticate    | Authentication failed. See also Section [**Authentication**](#authentication).
+403 Content-type not supported  | The supplied content type is not supported. See also Section [**Content Types**](#content-types).
+403 No Content-type given       | Header field `Content-Type` was not set but is mandatory. See also Section [**Content Types**](#content-types).
+403 internal format allocation problem | There was a problem allocating the format handler, this is an internal Icecast problem.
+403 too many sources connected  | The Icecast instance' source client limit was reached. No more connections are allowed.
+403 Mountpoint in use           | The client tried to connect to an occupied mountpoint. That means, another client is connected already.
+500 Internal Server Error       | An internal Icecast server error occured.
+
+### 100-Continue
+The client can send an `Excpect` header field to tell the server it shall acknowledge 
+the request and verify that sending data is allowed. This behaviour isn't mandatory but 
+highly recommended espacially in combination with authorization.
+
+**Expect header in source client request**
+```http
+...
+Expect: 100-continue
+...
+```
+> **Take care:** If the client sends the expect header it is not allowed to send the payload bytes 
+> directly! It has to wait until the server responded with `100 Continue`.
+
+**Server responds with 100 Continue if everything is fine**
+```http
+HTTP/1.1 100 Continue
+Date: Fri, 31 Dec 1999 23:59:59 UTC
+Server: <server-identifier>
+```
+**Source client starts sending binary data**
+```http
+<binary data>
+```
 ### Authentication
 Depending on the mountpoint's configuration, the server expects credentials 
 before it allwos to accept the source stream. If a source client does not provide
@@ -79,30 +116,10 @@ userid             = *<TEXT excluding ":">
 password           = *TEXT
 ```
 
-### 100-Continue
-The client can send an `Excpect` header field to tell the server it shall acknowledge 
-the request and verify that sending data is allowed. This behaviour isn't mandatory but 
-highly recommended espacially in combination with authorization.
+### Content Types
 
-**Expect header in source client request**
-```http
-...
-Expect: 100-continue
-...
-```
-> If the client sends the expect header it is not allowed to send the payload bytes 
-> directly! It has to wait until the server responds with `100 Continue`.
+### Meta Data
 
-**Server responds with 100 Continue if everything is fine**
-```http
-HTTP/1.1 100 Continue
-Date: Fri, 31 Dec 1999 23:59:59 UTC
-Server: <server-identifier>
-```
-**Source client starts sending binary data**
-```http
-<binary data>
-```
 
 ## Tested / Certified Source Clients
 
