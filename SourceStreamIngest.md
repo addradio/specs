@@ -84,4 +84,4 @@ password           = *TEXT
 
 ### Clients that are not tested but should be ok
 
-[rfc7617]: https://tools.ietf.org/html/rfc7617
+[rfc7617]: https://tools.ietf.org/html/rfc7617  "RFC 7617"
