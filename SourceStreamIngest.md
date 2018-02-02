@@ -6,9 +6,9 @@ covered by this specification, since the older versions used `SOURCE` as protcol
 method, which isn't conform to HTTP standards.
 
 ## Contents
-- [**Protocol Specification**](#protocol-specification)
--- [**Conventions**](#conventions)
--- [**Communication Basics**](#communication-basics)
+* [**Protocol Specification**](#protocol-specification)
+** [**Conventions**](#conventions)
+** [**Communication Basics**](#communication-basics)
 
 ## Protocol Specification
 
