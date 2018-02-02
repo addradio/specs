@@ -7,8 +7,8 @@ method, which isn't conform to HTTP standards.
 
 ## Contents
 * [**Protocol Specification**](#protocol-specification)
-** [**Conventions**](#conventions)
-** [**Communication Basics**](#communication-basics)
+..* [**Conventions**](#conventions)
+..* [**Communication Basics**](#communication-basics)
 
 ## Protocol Specification
 
