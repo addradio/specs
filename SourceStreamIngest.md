@@ -5,6 +5,11 @@ content to an Icecast server instance. Only Icecast Server versions > 2.4.0 (May
 covered by this specification, since the older versions used `SOURCE` as protcol
 method, which isn't conform to HTTP standards.
 
+## Contents
+- [**Protocol Specification**](#protocol-specification)
+-- [**Conventions**](#conventions)
+-- [**Communication Basics**](#communication-basics)
+
 ## Protocol Specification
 
 The Icecast protocol is a derivate of `HTTP 1.1`. It could be compared to a simple 
@@ -17,7 +22,7 @@ The following conventions are valid for the whole section:
 * Encoding is always UTF-8
 * Every line has to end with character CRLF (0x13 0x10)
 
-### Communication Basis
+### Communication Basics
 
 1. PUT
 1. No chunked transfer encoding!
@@ -53,17 +58,17 @@ Server: <server-identifier>
 
 [//]: # (SEBASTIAN Is 200 sent at all?)
 
-Status Code | Description
------------ | ------------
-100 Continue                    | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`. See also Section [**100-Continue**](#100-continue).
-200 OK                          | Sent after source client stopped
-401 You need to authenticate    | Authentication failed. See also Section [**Authentication**](#authentication).
-403 Content-type not supported  | The supplied content type is not supported. See also Section [**Content Types**](#content-types).
-403 No Content-type given       | Header field `Content-Type` was not set but is mandatory. See also Section [**Content Types**](#content-types).
-403 internal format allocation problem | There was a problem allocating the format handler, this is an internal Icecast problem.
-403 too many sources connected  | The Icecast instance' source client limit was reached. No more connections are allowed.
-403 Mountpoint in use           | The client tried to connect to an occupied mountpoint. That means, another client is connected already.
-500 Internal Server Error       | An internal Icecast server error occured.
+**Status Code** | **Description**
+--------------- | -----------------
+**100** Continue                    | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`. See also Section [**100-Continue**](#100-continue).
+**200** OK                          | Sent after source client stopped
+**401** You need to authenticate    | Authentication failed. See also Section [**Authentication**](#authentication).
+**403** Content-type not supported  | The supplied content type is not supported. See also Section [**Content Types**](#content-types).
+**403** No Content-type given       | Header field `Content-Type` was not set but is mandatory. See also Section [**Content Types**](#content-types).
+**403** internal format allocation problem | There was a problem allocating the format handler, this is an internal Icecast problem.
+**403** too many sources connected  | The Icecast instance' source client limit was reached. No more connections are allowed.
+**403** Mountpoint in use           | The client tried to connect to an occupied mountpoint. That means, another client is connected already.
+**500** Internal Server Error       | An internal Icecast server error occured.
 
 ### 100-Continue
 The client can send an `Excpect` header field to tell the server it shall acknowledge 
