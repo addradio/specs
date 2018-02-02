@@ -44,7 +44,7 @@ HTTP/1.1 100 Continue
 Date: Fri, 31 Dec 1999 23:59:59 UTC
 Server: <server-identifier>
 ```
-**Source cLient continues sending data**
+**Source client continues sending data**
 ```http
 <binary data>
 ```
@@ -78,7 +78,23 @@ password           = *TEXT
 ```
 
 ### 100-Continue
+The client can send an `Excpect` header field to tell the server it shall acknowledge 
+the request and verify that sending data is allowed. This behaviour isn't mandatory but 
+highly recommended espacially in combination with authorization.
 
+**Expect header in source client request**
+```http
+...
+Expect: 100-continue
+...
+```
+**Server responds with 100 Continue if everything is fine**
+```http
+HTTP/1.1 100 Continue
+Date: Fri, 31 Dec 1999 23:59:59 UTC
+Server: <server-identifier>
+```
+**Source client starts sending binary data**
 
 ## Tested / Certified Source Clients
 
