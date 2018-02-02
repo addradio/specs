@@ -17,7 +17,9 @@ The following conventions are valid for the whole section:
 * Encoding is always UTF-8
 * Every line has to end with character CRLF (0x13 0x10)
 
-### Initial Request Sent from Source Client to Server
+### Example Client Server Communication 
+
+**Initial request sent from source client to server**
 ```http
 PUT <mountpoint> HTTP/1.1
 Authorization: Basic <basic-credentials see definition below>
@@ -31,7 +33,24 @@ Ice-URL: http://example.org
 Ice-Genre: Rock
 Expect: 100-continue
 ```
-#### Definitions
+**Response from server**
+```http
+HTTP/1.1 100 Continue
+Date: Fri, 31 Dec 1999 23:59:59 UTC
+Server: <server-identifier>
+```
+**Source cLient continues sending data**
+```http
+<binary data>
+```
+
+### Authentication
+Depending on the mountpoint's configuration, the server 
+
+```http
+Authorization: Basic <basic-credentials see definition below>
+```
+**Definitions**
 ```ini
 basic-credentials  = base64-user-pass
 base64-user-pass   = <base64 [4] encoding of user-pass,
@@ -40,12 +59,7 @@ userid             = *<TEXT excluding ":">
 password           = *TEXT
 ```
 
-### Response from Server
-```http
-HTTP/1.1 100 Continue
-Date: Fri, 31 Dec 1999 23:59:59 UTC
-Server: <server-identifier>
-```
+
 
 
 ## Tested / Certified Source Clients
