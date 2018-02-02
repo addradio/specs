@@ -7,8 +7,16 @@ method, which isn't conform to HTTP standards.
 
 ## Contents
 * [**Protocol Specification**](#protocol-specification)
-..* [**Conventions**](#conventions)
-..* [**Communication Basics**](#communication-basics)
+  * [**Conventions**](#conventions)
+  * [**Communication Basics**](#communication-basics)
+  * Example Client Server Communication
+  * Response Status Codes
+  * 100-Continue
+  * Authentication
+  * Content Types
+  * Meta Data
+* Tested / Certified Source Clients
+  * Clients that are not tested but should be ok
 
 ## Protocol Specification
 
