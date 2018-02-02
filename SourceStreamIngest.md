@@ -79,7 +79,7 @@ Server: <server-identifier>
 **500** Internal Server Error       | An internal Icecast server error occured.
 
 ### 100-Continue
-The client can send an `Excpect` header field to tell the server it shall acknowledge 
+The client can send an `Expect` header field to tell the server it shall acknowledge 
 the request and verify that sending data is allowed. This behaviour isn't mandatory but 
 highly recommended espacially in combination with authorization.
 
