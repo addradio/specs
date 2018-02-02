@@ -5,7 +5,7 @@ the AddRadio network.
 
 Specification | Description
 ------------- | ------------
-[**Ingesting Source Streams to Icecast**](SourceStreamIngest.md)  | Creating a session.
+[**Ingesting Source Streams to Icecast**](SourceStreamIngest.md)  | Detailed information about ingestion of source audio streams to the AddRadio Icecast platform.
 
 ## Credentials
 ### Authors
