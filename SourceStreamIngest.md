@@ -8,7 +8,7 @@ method, which isn't conform to HTTP standards.
 ## Protocol Specification
 
 The Icecast protocol is a derivate of `HTTP 1.1`. It could be compared to a simple 
-progressive upstream at a nearly constant and low bitrated (compared to what is 
+progressive upstream at a nearly constant and low bitrate (compared to what is 
 nowadays possible).
 
 ### Conventions
@@ -60,7 +60,7 @@ Date: Fri, 31 Dec 1999 23:59:59 UTC
 Server: <server-identifier>
 ```
 
-Icecast's authentication is based on [RFC 7617][1]. The source client needs to 
+Icecast's authentication is based on [RFC 7617][rfc7617]. The source client needs to 
 add the following header to its request to provide the requested credentials:
 
 ```http
@@ -84,5 +84,5 @@ password           = *TEXT
 
 ### Clients that are not tested but should be ok
 
-## References
-[1]: https://tools.ietf.org/html/rfc7617
+/* References */
+[rfc7617]: https://tools.ietf.org/html/rfc7617
