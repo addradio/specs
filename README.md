@@ -3,7 +3,7 @@
 This project bundles all relevant technical specification for interfacing with 
 the AddRadio network. 
 
-Sepcification | Description
+Specification | Description
 ------------- | ------------
 [**Ingesting Source Streams to Icecast**](SourceStreamIngest.md)  | Creating a session.
 
