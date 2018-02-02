@@ -52,8 +52,9 @@ Server: <server-identifier>
 ### Response Status Codes
 
 [//]: # (SEBASTIAN Is 200 sent at all?)
+
 Status Code | Description
------------- | -------------
+----------- | ------------
 100 Continue                    | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`
 200 OK                          | Sent after source client stopped
 401 You need to authenticate    | Authentication failed. See also Section [**Authentication**](#authentication).
