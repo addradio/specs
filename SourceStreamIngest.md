@@ -55,7 +55,7 @@ Server: <server-identifier>
 
 Status Code | Description
 ----------- | ------------
-100 Continue                    | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`
+100 Continue                    | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`. See also Section [**100-Continue**](#100-continue).
 200 OK                          | Sent after source client stopped
 401 You need to authenticate    | Authentication failed. See also Section [**Authentication**](#authentication).
 403 Content-type not supported  | The supplied content type is not supported. See also Section [**Content Types**](#content-types).
