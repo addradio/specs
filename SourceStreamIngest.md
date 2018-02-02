@@ -1,7 +1,7 @@
 # Ingesting Source Streams to Icecast
 
 This document describes how a source client (e.g. an encoder) submits its 
-content to an Icecast server instance. Only Icecast Server versions > 2.4.0 are 
+content to an Icecast server instance. Only Icecast Server versions > 2.4.0 (May 2014) are 
 covered by this specification, since the older versions used `SOURCE` as protcol
 method, which isn't conform to HTTP standards.
 
@@ -19,8 +19,9 @@ The following conventions are valid for the whole section:
 
 ### Communication Basis
 
-PUT
-TBD
+1. PUT
+1. No chunked transfer encoding!
+1. Timing is important
 
 ### Example Client Server Communication 
 
@@ -48,6 +49,7 @@ Server: <server-identifier>
 ```http
 <binary data>
 ```
+### Response Status Codes
 
 ### Authentication
 Depending on the mountpoint's configuration, the server expects credentials 
@@ -88,6 +90,9 @@ highly recommended espacially in combination with authorization.
 Expect: 100-continue
 ...
 ```
+> If the client sends the expect header it is not allowed to send the payload bytes 
+> directly! It has to wait until the server responds with `100 Continue`.
+
 **Server responds with 100 Continue if everything is fine**
 ```http
 HTTP/1.1 100 Continue
@@ -95,6 +100,9 @@ Date: Fri, 31 Dec 1999 23:59:59 UTC
 Server: <server-identifier>
 ```
 **Source client starts sending binary data**
+```http
+<binary data>
+```
 
 ## Tested / Certified Source Clients
 
