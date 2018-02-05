@@ -2,7 +2,7 @@
 
 This document describes how a source client (e.g. an encoder) submits its 
 content to an Icecast server instance. Only Icecast Server versions > 2.4.0 (May 2014) are 
-covered by this specification, since the older versions used `SOURCE` as protcol
+covered by this specification, since the older versions used `SOURCE` as protocol
 method, which isn't conform to HTTP standards.
 
 ## Contents
