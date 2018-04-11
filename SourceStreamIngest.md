@@ -43,7 +43,6 @@ The following conventions are valid for the whole section:
 PUT <mountpoint> HTTP/1.1
 Authorization: Basic <basic-credentials see definition below>
 User-Agent: <source client description/version>
-Transfer-Encoding: chunked
 Content-Type: audio/mpeg
 Ice-Public: 1
 Ice-Name: Teststream
