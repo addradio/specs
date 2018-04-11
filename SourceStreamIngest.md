@@ -65,6 +65,9 @@ Server: <server-identifier>
 
 [//]: # (SEBASTIAN Is 200 sent at all?)
 
+The server may respond with any [RFC 7231 Section 6][rfc7231#section-6] status code.
+Below is a incomplete list of important status codes:
+
 **Status Code** | **Description**
 --------------- | -----------------
 **100** Continue                    | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`. See also Section [**100-Continue**](#100-continue).
@@ -138,4 +141,5 @@ password           = *TEXT
 
 ### Clients that are not tested but should be ok
 
+[rfc7231#section-6]: https://tools.ietf.org/html/rfc7231#section-6  "RFC 7231 Section 6: Response Status Codes"
 [rfc7617]: https://tools.ietf.org/html/rfc7617  "RFC 7617"
