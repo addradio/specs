@@ -63,8 +63,6 @@ Server: <server-identifier>
 ```
 ### Response Status Codes
 
-[//]: # (SEBASTIAN Is 200 sent at all?)
-
 The server may respond with any [RFC 7231 Section 6][rfc7231#section-6] status code.
 Below is a incomplete list of important status codes:
 
