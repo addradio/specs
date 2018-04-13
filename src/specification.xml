@@ -6,6 +6,26 @@
     <title>Technical specification for interfacing with the AddRadio network</title>
     <chapter>
         <title>General communication with Icecast2</title>
+        <section>
+            <title>Protocol Specification</title>
+            <section>
+                <title>Error codes</title>
+            </section>
+            <section>
+                <title>Authentication</title>
+            </section>
+            <section>
+                <title>Transfer encodings</title>
+            </section>
+        </section>
+
+        <section>
+            <title>TLS</title>
+        </section>
+
+        <section>
+            <title>Content Types</title>
+        </section>
     </chapter>
     <chapter>
         <title>Ingesting Source Streams to Icecast2</title>
