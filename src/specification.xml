@@ -39,6 +39,13 @@
     </chapter>
     <chapter>
         <title>Accessing a Icecast2 stream as listener</title>
+        <section>
+            <title>Protocol Specification</title>
+        </section>
+
+        <section>
+            <title>Examples</title>
+        </section>
     </chapter>
     <chapter>
         <title>Accessing administration interface and API</title>
