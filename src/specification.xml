@@ -4,4 +4,19 @@
 
 <book xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Technical specification for interfacing with the AddRadio network</title>
+    <chapter>
+        <title>General communication with Icecast2</title>
+    </chapter>
+    <chapter>
+        <title>Ingesting Source Streams to Icecast2</title>
+    </chapter>
+    <chapter>
+        <title>Accessing a Icecast2 stream as listener</title>
+    </chapter>
+    <chapter>
+        <title>Accessing administration interface and API</title>
+    </chapter>
+    <chapter>
+        <title>Tested and Certified Source Clients</title>
+    </chapter>
 </book>
