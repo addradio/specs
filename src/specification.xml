@@ -9,6 +9,8 @@
         <para>Communication with Icecast2 is based on HTTP. Icecast2 implements HTTP/1.0 with a set of features from HTTP/1.1 and some usecase specific extensions. In addition Icecast2 may support other protocols such as ICY.</para>
         <section>
             <title>Protocol Specification</title>
+            <para>All Icecast2 clients connect to Icecast2 using the same server address. Mountpoints and general web access uses administor provided resource names. The administration interface and API is available below the resource prefix "/admin".</para>
+            <para>Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failture. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.</para>
             <section>
                 <title>Error codes</title>
             </section>
