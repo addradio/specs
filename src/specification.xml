@@ -504,6 +504,7 @@ Access-Control-Allow-Origin: *
         <para>Listener clients (audio and video) request streams by using HTTP GET.</para>
         <section>
             <title>Protocol Specification</title>
+            <para>Listener clients request the corresponding stream using HTTP GET. Clients should send a HTTP/1.1 request. Icecast2 will respond with the stream if the request is successful or corresponding error code if not. Icecast2 may also require the client to authenticate before allowing access.</para>
         </section>
 
         <section>
