@@ -6,6 +6,7 @@
     <title>Technical specification for interfacing with the AddRadio network</title>
     <chapter>
         <title>General communication with Icecast2</title>
+        <para>Communication with Icecast2 is based on HTTP. Icecast2 implements HTTP/1.0 with a set of features from HTTP/1.1 and some usecase specific extensions. In addition Icecast2 may support other protocols such as ICY.</para>
         <section>
             <title>Protocol Specification</title>
             <section>
