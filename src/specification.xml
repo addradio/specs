@@ -378,6 +378,27 @@
         <note>HTTP PUT was implemented in Icecast2 2.4.0-beta.2. Before that a custom extension was used using the HTTP method "SOURCE".</note>
         <section>
             <title>Protocol Specification</title>
+            <section>
+                <title>Overview</title>
+                <para>Sending data to the server is done by:
+                    <orderedlist>
+                        <listitem><para>Optionally a TLS connection is established between client and server.</para></listitem>
+                        <listitem><para>A PUT request is sent by the client without authentication data.</para></listitem>
+                        <listitem><para>Optionally the server may refuse the request if authentication is required. The client then repeats the request with authentication data provided.</para></listitem>
+                        <listitem><para>Optionally the server replies with a 100-continue message.</para></listitem>
+                        <listitem><para>The client sends the stream in negotiated transfer encoding.</para></listitem>
+                        <listitem><para>The server replies with a final 200-OK.</para></listitem>
+                        <listitem><para>Client and server terminate the connection.</para></listitem>
+                    </orderedlist>
+                </para>
+            </section>
+            <section xml:id="S100continue">
+                <title xml:id="S100continue.title">100-continue</title>
+                <para>The client should ask the server to send a 100-continue reply. This allows the server to reject the stream cleanly in case there is any problem. Such problems could be e.g. missmatch of credentials or unsupported parameters. Then the 100-continue reply is requested the server may reply with a 100-continue. The client should wait a resonable long time before starting to provide data if no reply has been received yet.</para>
+                <para>The 100-continue reply is requested by adding the following header to the request header:</para>
+                <programlisting>Expect: 100-continue</programlisting>
+                <warning>Up to Icecast2 2.4.3 there is a bug that causes the TLS connection to be abnormally terminated when using 100-continue and TLS. This has been fixed in Icecast2 2.4.4 and 2.5.0-beta.2.</warning>
+            </section>
         </section>
 
         <section>
