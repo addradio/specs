@@ -547,6 +547,79 @@ icy-pub:0
                     </para>
                 </formalpara>
             </section>
+            <section>
+                <title>Successfull communication with Authentication</title>
+                <para>This example demonstrates a successful communication between a Icecast2 server and a client. Authorization is used.</para>
+                <formalpara>
+                    <title>Client to server: The client requests the stream with no authentication</title>
+                    <para>The client sends the request for the stream without authentication data provided.
+                        <programlisting><![CDATA[GET /example1.ogg HTTP/1.1
+Host: localhost:8900
+User-Agent: Wget/1.16 (linux-gnu)
+Accept: */*
+Connection: Keep-Alive
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Server to client: Refusal of the request by the server</title>
+                    <para>The server informs the client that the given resource requires authentication. It also provides the required information for that.
+                        <programlisting><![CDATA[
+HTTP/1.0 401 Authentication Required
+Server: Icecast 2.4.99.3
+Connection: Keep-Alive
+Accept-Encoding: identity, chunked
+Allow: GET, PUT, SOURCE
+Upgrade: TLS/1.0
+Date: Wed, 18 Apr 2018 12:08:30 GMT
+Content-Type: text/plain; charset=utf-8
+WWW-Authenticate: Basic realm="Icecast2 Server"
+Cache-Control: no-cache
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Content-Length: 26
+<blank line>
+You need to authenticate]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Client to server: The client resends the request with authentication</title>
+                    <para>The client retries the request based on the provided information. It includes the authentication data as requested by the server.
+                        <programlisting><![CDATA[GET /example1.ogg HTTP/1.1
+Host: localhost:8900
+User-Agent: Wget/1.16 (linux-gnu)
+Accept: */*
+Connection: Keep-Alive
+Authorization: Basic bGlzdGVuZXI6aGFja21l <Base64 of "listener:hackme">
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Server to client: Final response to client</title>
+                    <para>The server responds with the stream mounted on the provided resource.
+                        <programlisting><![CDATA[HTTP/1.0 200 OK
+Server: Icecast 2.4.99.3
+Connection: Close
+Accept-Encoding: identity, chunked
+Allow: GET, PUT, SOURCE
+Upgrade: TLS/1.0
+Date: Wed, 18 Apr 2018 12:08:30 GMT
+Content-Type: application/ogg
+Cache-Control: no-cache
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+ice-audio-info: samplerate=0;channels=0;quality=3%2e00
+icy-description:A short description of your stream
+icy-genre:Example genre
+icy-name:Example stream name
+icy-pub:0
+<blank line>
+<data>]]></programlisting>
+                    </para>
+                </formalpara>
+            </section>
         </section>
     </chapter>
     <chapter>
