@@ -509,6 +509,44 @@ Access-Control-Allow-Origin: *
 
         <section>
             <title>Examples</title>
+            <section>
+                <title>Successfull communication without Authentication</title>
+                <para>This example demonstrates a successful communication between a Icecast2 server and a client.</para>
+                <formalpara>
+                    <title>Client to server: Client requests the stream</title>
+                    <para>The client sends it request for the given stream.
+                        <programlisting><![CDATA[GET /example1.ogg HTTP/1.1
+Host: localhost:8900
+User-Agent: Wget/1.16 (linux-gnu)
+Accept: */*
+Connection: Keep-Alive
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Server to client: Response to client</title>
+                    <para>The server does have the corresponding resource and allows access. Therefore it sends 200-OK and the content of the stream.
+                        <programlisting><![CDATA[HTTP/1.0 200 OK
+Server: Icecast 2.4.99.3
+Connection: Close
+Accept-Encoding: identity, chunked
+Allow: GET, PUT, SOURCE
+Date: Wed, 18 Apr 2018 10:10:54 GMT
+Content-Type: application/ogg
+Cache-Control: no-cache
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+ice-audio-info: samplerate=0;channels=0;quality=3%2e00
+icy-description:A short description of your stream
+icy-genre:Example genre
+icy-name:Example stream name
+icy-pub:0
+<blank line>
+<data>]]></programlisting>
+                    </para>
+                </formalpara>
+            </section>
         </section>
     </chapter>
     <chapter>
