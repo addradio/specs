@@ -145,6 +145,39 @@
             </section>
             <section>
                 <title>Transfer encodings</title>
+                <para>Icecast2 supports diffrent transfer encodings for sending data to Icecast2. A client is free to choice any of what is supported by the server. An application must consider what transfer encodings are announced by the server.</para>
+                <para>The transfer encoding is announced by the server using the <code>Accept-Encoding</code> HTTP header.</para>
+                <table>
+                    <thead>
+                        <row>
+                            <entry>Encoding</entry>
+                            <entry>min. Icecast2 version</entry>
+                            <entry>Comment</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>identity</entry>
+                            <entry>Icecast2 2.0.0</entry>
+                            <entry>This is the safe fallback.</entry>
+                        </row>
+                        <row>
+                            <entry>chunked</entry>
+                            <entry>Icecast2 2.5.0-beta.1</entry>
+                            <entry></entry>
+                        </row>
+                    </tbody>
+                </table>
+                <warning>Prior to Icecast2 2.5.0-beta.1 the server did not return error in case a unsupported transfer encoding was used by the client. Those servers only support the "identity" encoding.</warning>
+                <note>RFC 7230 removed the "identity" encoding from the standard. See <link xlink:href="https://tools.ietf.org/html/rfc7230#appendix-A.2">RFC 7230 Appendinx A.2</link> for details.</note>
+                <tip>
+                    <para>
+                        When chunked is not used as outmost transfer encoding the client can half-close the connection to signal the end of the request if the transport supports half-closed connections.
+                    </para>
+                    <para>
+                        On IEEE Std 1003.1 ("POSIX") systems this can be achieved calling <function>shutdown</function> with <constant>SHUT_WR</constant>.
+                    </para>
+                </tip>
             </section>
         </section>
 
