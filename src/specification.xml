@@ -211,6 +211,165 @@
 
         <section>
             <title>Content Types</title>
+            <para>The following content types are support for streaming. Other content types my be used for non-streaming resources such as the administration interface and the API.</para>
+            <table>
+                <title>Mine Types</title>
+                <thead>
+                    <row>
+                        <entry>Mime Type</entry>
+                        <entry>Container</entry>
+                        <entry>Codecs</entry>
+                        <entry>min. Icecast2 version</entry>
+                        <entry>Comment</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>application/x-ogg</entry>
+                        <entry>Ogg</entry>
+                        <entry><emphasis>See application/ogg</emphasis></entry>
+                        <entry>Icecast2 2.0.0</entry>
+                        <entry>For backwards compatibility only. Do not use in new applications.</entry>
+                    </row>
+                    <row>
+                        <entry>application/ogg</entry>
+                        <entry>Ogg</entry>
+                        <entry>Vorbis, Opus, FLAC, Speex, MIDI, Theora, Kate, Skeleton</entry>
+                        <entry>Icecast2 2.3.2</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>audio/ogg</entry>
+                        <entry>Ogg</entry>
+                        <entry>Vorbis, Opus, FLAC, Speex, MIDI, Skeleton</entry>
+                        <entry>Icecast2 2.3.2</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>video/ogg</entry>
+                        <entry>Ogg</entry>
+                        <entry>Vorbis, Opus, FLAC, Speex, MIDI, Theora, Kate, Skeleton</entry>
+                        <entry>Icecast2 2.3.2</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>audio/webm</entry>
+                        <entry>WebM</entry>
+                        <entry><emphasis>Any as per WebM specification</emphasis></entry>
+                        <entry>Icecast2 2.4.0-beta.1</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>video/webm</entry>
+                        <entry>WebM</entry>
+                        <entry><emphasis>Any as per WebM specification</emphasis></entry>
+                        <entry>Icecast2 2.4.0-beta.1</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>audio/x-matroska</entry>
+                        <entry>Matroska</entry>
+                        <entry><emphasis>Any as per Matroska specification</emphasis></entry>
+                        <entry>Icecast2 2.4.0-beta.1</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>video/x-matroska</entry>
+                        <entry>Matroska</entry>
+                        <entry><emphasis>Any as per Matroska specification</emphasis></entry>
+                        <entry>Icecast2 2.4.0-beta.1</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>video/x-matroska-3d</entry>
+                        <entry>Matroska</entry>
+                        <entry><emphasis>Any as per Matroska specification</emphasis></entry>
+                        <entry>Icecast2 2.4.0-beta.1</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>audio/mpeg</entry>
+                        <entry>MP3</entry>
+                        <entry><emphasis>ignored</emphasis></entry>
+                        <entry>Icecast2 2.0.0</entry>
+                        <entry>Handled as <emphasis>any other</emphasis> since Icecast2 2.2.0.</entry>
+                    </row>
+                    <row>
+                        <entry><emphasis>any other</emphasis></entry>
+                        <entry>MP3, AAC, NSV</entry>
+                        <entry><emphasis>ignored</emphasis></entry>
+                        <entry>Icecast2 2.2.0</entry>
+                        <entry>Deprecated. Handled using a generic format handler.</entry>
+                    </row>
+                </tbody>
+            </table>
+            <table>
+                <title>Codecs</title>
+                <thead>
+                    <row>
+                        <entry>Codec</entry>
+                        <entry>Containers</entry>
+                        <entry>min. Icecast2 version</entry>
+                        <entry>Comment</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>Vorbis</entry>
+                        <entry>Ogg, WebM, Matroska</entry>
+                        <entry></entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>Opus</entry>
+                        <entry>Ogg, WebM, Matroska</entry>
+                        <entry></entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>FLAC</entry>
+                        <entry>Ogg</entry>
+                        <entry></entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>Speex</entry>
+                        <entry>Ogg</entry>
+                        <entry></entry>
+                        <entry>Deprecated.</entry>
+                    </row>
+                    <row>
+                        <entry>MIDI</entry>
+                        <entry>Ogg</entry>
+                        <entry></entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>Theora</entry>
+                        <entry>Ogg</entry>
+                        <entry></entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>Kate</entry>
+                        <entry>Ogg</entry>
+                        <entry></entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>Skeleton</entry>
+                        <entry>Ogg</entry>
+                        <entry></entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry><emphasis>any other</emphasis></entry>
+                        <entry>WebM, Matroska</entry>
+                        <entry></entry>
+                        <entry>Supported as per container specification.</entry>
+                    </row>
+                </tbody>
+            </table>
         </section>
     </chapter>
     <chapter>
