@@ -13,6 +13,129 @@
             <para>Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failture. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.</para>
             <section>
                 <title>Error codes</title>
+                <para>The server may respond with any <link xlink:href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231 Section 6</link> status code. Below is a incomplete list of important status codes:
+                    <table>
+                        <thead>
+                            <row>
+                                <entry>Code</entry>
+                                <entry>Text</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>100</entry>
+                                <entry>Continue</entry>
+                                <entry>Is sent if client requested it by adding the corresponding header to its request: <code>Expect: 100-continue</code>. See also Section <emphasis>100-continue</emphasis>.</entry>
+                            </row>
+                            <row>
+                                <entry>101</entry>
+                                <entry>Switching Protocols</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>200</entry>
+                                <entry>OK</entry>
+                                <entry>Sent after source client stopped</entry>
+                            </row>
+                            <row>
+                                <entry>206</entry>
+                                <entry>Partial Content</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>400</entry>
+                                <entry>Bad Request</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>401</entry>
+                                <entry>You need to authenticate</entry>
+                                <entry>Authentication failed. See also Section <emphasis>Authentication</emphasis>.</entry>
+                            </row>
+                            <row>
+                                <entry>401</entry>
+                                <entry>Authentication Required</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>Content-type not supported</entry>
+                                <entry>The supplied content type is not supported. See also Section <emphasis>Content Types</emphasis>.</entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>No Content-type given</entry>
+                                <entry>Header field <code>Content-Type</code> was not set but is mandatory. See also Section <emphasis>Content Types</emphasis>.</entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>internal format allocation problem</entry>
+                                <entry>There was a problem allocating the format handler, this is an internal Icecast problem.</entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>too many sources connected</entry>
+                                <entry>The Icecast instance' source client limit was reached. No more connections are allowed.</entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>Mountpoint in use</entry>
+                                <entry>The client tried to connect to an occupied mountpoint. That means, another client is connected already.</entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>busy, please try again later</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>Icecast connection limit reached</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>Reached limit of concurrent connections on those credentials</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>Rejecting client for whatever reason</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>403</entry>
+                                <entry>Forbidden</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>404</entry>
+                                <entry>File Not Found</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>416</entry>
+                                <entry>Request Range Not Satisfiable</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>426</entry>
+                                <entry>Upgrade Required</entry>
+                                <entry></entry>
+                            </row>
+                            <row>
+                                <entry>500</entry>
+                                <entry>Internal Server Error</entry>
+                                <entry>An internal Icecast server error occured</entry>
+                            </row>
+                            <row>
+                                <entry>501</entry>
+                                <entry>Unimplemented</entry>
+                                <entry></entry>
+                            </row>
+                        </tbody>
+                    </table>
+                </para>
             </section>
             <section>
                 <title>Authentication</title>
