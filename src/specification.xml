@@ -501,6 +501,7 @@ Access-Control-Allow-Origin: *
     </chapter>
     <chapter>
         <title>Accessing a Icecast2 stream as listener</title>
+        <para>Listener clients (audio and video) request streams by using HTTP GET.</para>
         <section>
             <title>Protocol Specification</title>
         </section>
