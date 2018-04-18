@@ -407,7 +407,7 @@
             <note>This section is not part of the specification.</note>
             <section>
                 <title>Successfull communication with Authentication and 100-continue</title>
-                <para>This example demonstrates a successfull communication between a Icecast2 server and a client using Authentication and 100-continue.</para>
+                <para>This example demonstrates a successful communication between a Icecast2 server and a client using Authentication and 100-continue.</para>
                 <formalpara>
                     <title>Client to server: Initial request without authentication</title>
                     <para>The client sends an initial request to the server. The request does not contain any authentication data.
