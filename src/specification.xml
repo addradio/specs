@@ -139,6 +139,9 @@
             </section>
             <section>
                 <title>Authentication</title>
+                <para>Depending on operation and resource Icecast2 may require the client to authenticate. If such a resource is accessed in such a operation and no authentication data was sent along with the request Icecast2 will respond with the corresponding error status.</para>
+                <para>Authentication is based on <link xlink:href="https://tools.ietf.org/html/rfc7617">RFC 7617</link>. The client must send a request with no authentication first. The server will include information in it's error response on how to provide authentication data correctly. This step may be skipped according to the rules in RFC 7617 only.</para>
+                <para>The client must support the "Basic" authentication scheme.</para>
             </section>
             <section>
                 <title>Transfer encodings</title>
