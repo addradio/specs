@@ -183,6 +183,30 @@
 
         <section>
             <title>TLS</title>
+            <para>Icecast2 has TLS support included. Available TLS versions and options depend on the actual deployment. The following modes are supported:
+                <table>
+                    <thead>
+                        <row>
+                            <entry>Mode</entry>
+                            <entry>min. Icecast2 version</entry>
+                            <entry>Comment</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>RFC 2817</entry>
+                            <entry>Icecast2 2.3.2</entry>
+                            <entry>HTTP over TLS</entry>
+                        </row>
+                        <row>
+                            <entry>RFC 2818</entry>
+                            <entry>Icecast2 2.5.0-beta.1</entry>
+                            <entry>Upgrade to TLS within HTTP<footnote><para>This is similar to what other protocols call "STARTTLS".</para></footnote></entry>
+                        </row>
+                    </tbody>
+                </table>
+            </para>
+            <note>Some older documentation may call TLS SSL.</note>
         </section>
 
         <section>
