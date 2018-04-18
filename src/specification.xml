@@ -516,7 +516,7 @@ Access-Control-Allow-Origin: *
                     <title>Client to server: Client requests the stream</title>
                     <para>The client sends it request for the given stream.
                         <programlisting><![CDATA[GET /example1.ogg HTTP/1.1
-Host: localhost:8900
+Host: localhost:8000
 User-Agent: Wget/1.16 (linux-gnu)
 Accept: */*
 Connection: Keep-Alive
@@ -554,7 +554,7 @@ icy-pub:0
                     <title>Client to server: The client requests the stream with no authentication</title>
                     <para>The client sends the request for the stream without authentication data provided.
                         <programlisting><![CDATA[GET /example1.ogg HTTP/1.1
-Host: localhost:8900
+Host: localhost:8000
 User-Agent: Wget/1.16 (linux-gnu)
 Accept: */*
 Connection: Keep-Alive
@@ -587,7 +587,7 @@ You need to authenticate]]></programlisting>
                     <title>Client to server: The client resends the request with authentication</title>
                     <para>The client retries the request based on the provided information. It includes the authentication data as requested by the server.
                         <programlisting><![CDATA[GET /example1.ogg HTTP/1.1
-Host: localhost:8900
+Host: localhost:8000
 User-Agent: Wget/1.16 (linux-gnu)
 Accept: */*
 Connection: Keep-Alive
