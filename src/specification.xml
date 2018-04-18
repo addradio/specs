@@ -403,6 +403,100 @@
 
         <section>
             <title>Examples</title>
+            <para>This section lists example communication with an Icecast2 server for sending source streams. Information in &lt;&gt; are comments or special data.</para>
+            <note>This section is not part of the specification.</note>
+            <section>
+                <title>Successfull communication with Authentication and 100-continue</title>
+                <para>This example demonstrates a successfull communication between a Icecast2 server and a client using Authentication and 100-continue.</para>
+                <formalpara>
+                    <title>Client to server: Initial request without authentication</title>
+                    <para>The client sends an initial request to the server. The request does not contain any authentication data.
+                        <programlisting><![CDATA[PUT /example1.ogg HTTP/1.1
+Host: localhost:8000
+User-Agent: IceS 2.0.2
+Content-Type: application/ogg
+ice-public: 0
+ice-name: Example stream name
+ice-genre: Example genre
+ice-description: A short description of your stream
+ice-audio-info: samplerate=48000;channels=2;quality=3%2e00
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Server to client: Initial response requesting authentication</title>
+                    <para>The server replies to the server with status 401 "Authentication Required". This asks the client to authenticate and provides required information.
+                        <programlisting><![CDATA[HTTP/1.0 401 Authentication Required
+Server: Icecast 2.4.99.3
+Connection: Keep-Alive
+Accept-Encoding: identity, chunked
+Allow: GET, PUT, SOURCE
+Date: Fri, 13 Apr 2018 08:16:31 GMT
+Content-Type: text/plain; charset=utf-8
+WWW-Authenticate: Basic realm="Icecast2 Server"
+Cache-Control: no-cache
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Content-Length: 26
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Close to server: Repeated request with authentication</title>
+                    <para>The client repeats it's request with authentication data as per request by the server.
+                        <programlisting><![CDATA[PUT /example1.ogg HTTP/1.0
+Host: localhost:8000
+Expect: 100-continue
+Authorization: Basic c291cmNlOmhhY2ttZQ== <Base64 of "source:hackme">
+User-Agent: IceS 2.0.2
+Content-Type: application/ogg
+ice-public: 0
+ice-name: Example stream name
+ice-genre: Example genre
+ice-description: A short description of your stream
+ice-audio-info: samplerate=48000;channels=2;quality=3%2e00
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Server to client: 100-continue</title>
+                    <para>The server replies with a 100-continue. The client can now assume that the request is likely to pass and can send the body.
+                        <programlisting><![CDATA[HTTP/1.1 100 Continue
+Server: Icecast 2.4.99.3
+Accept-Encoding: identity, chunked
+Allow: GET, PUT, SOURCE
+Date: Fri, 13 Apr 2018 08:31:25 GMT
+Cache-Control: no-cache
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Client to server: Client sends data</title>
+                    <para>The client sends the stream data as body of it's second PUT request.
+                        <programlisting><![CDATA[<data>]]></programlisting>
+                    </para>
+                </formalpara>
+                <formalpara>
+                    <title>Server to client: Final response to client</title>
+                    <para>After the client finished the server acknowledges the request and data by returning a final 200-OK response.
+                        <programlisting><![CDATA[HTTP/1.0 200 OK
+Server: Icecast 2.4.99.3
+Connection: Close
+Accept-Encoding: identity, chunked
+Allow: GET, PUT, SOURCE
+Date: Fri, 13 Apr 2018 08:31:25 GMT
+Cache-Control: no-cache
+Expires: Mon, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+<blank line>]]></programlisting>
+                    </para>
+                </formalpara>
+            </section>
         </section>
     </chapter>
     <chapter>
