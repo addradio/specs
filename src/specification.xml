@@ -374,6 +374,8 @@
     </chapter>
     <chapter>
         <title>Ingesting Source Streams to Icecast2</title>
+        <para>Ingesting source streams to Icecast2 is implemented by sending a HTTP PUT to the mountpoint of the given stream. The server will then try to create the stream automatically based on the provided data and it's configuration.</para>
+        <note>HTTP PUT was implemented in Icecast2 2.4.0-beta.2. Before that a custom extension was used using the HTTP method "SOURCE".</note>
         <section>
             <title>Protocol Specification</title>
         </section>
