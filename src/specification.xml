@@ -31,7 +31,7 @@
                             <row>
                                 <entry>101</entry>
                                 <entry>Switching Protocols</entry>
-                                <entry></entry>
+                                <entry>This is sent by the server when the server preforms a protocol switch as requested by the client. This may happen e.g. in <emphasis>RFC 2818 mode</emphasis>.</entry>
                             </row>
                             <row>
                                 <entry>200</entry>
@@ -41,22 +41,17 @@
                             <row>
                                 <entry>206</entry>
                                 <entry>Partial Content</entry>
-                                <entry></entry>
+                                <entry>The server's replies with a range from a range request. See <link xlink:href="https://tools.ietf.org/html/rfc7233#section-4.1">RFC 7233 Section 4.1</link> for details.</entry>
                             </row>
                             <row>
                                 <entry>400</entry>
                                 <entry>Bad Request</entry>
-                                <entry></entry>
-                            </row>
-                            <row>
-                                <entry>401</entry>
-                                <entry>You need to authenticate</entry>
-                                <entry>Authentication failed. See also Section <emphasis>Authentication</emphasis>.</entry>
+                                <entry>The client sent a request that was not understood by the server.</entry>
                             </row>
                             <row>
                                 <entry>401</entry>
                                 <entry>Authentication Required</entry>
-                                <entry></entry>
+                                <entry>No or invalid authentication data was provided. See also Section <emphasis>Authentication</emphasis>.</entry>
                             </row>
                             <row>
                                 <entry>403</entry>
@@ -71,57 +66,52 @@
                             <row>
                                 <entry>403</entry>
                                 <entry>internal format allocation problem</entry>
-                                <entry>There was a problem allocating the format handler, this is an internal Icecast problem.</entry>
+                                <entry>There was a problem allocating the format handler. This is an internal Icecast2 problem.</entry>
                             </row>
                             <row>
                                 <entry>403</entry>
                                 <entry>too many sources connected</entry>
-                                <entry>The Icecast instance' source client limit was reached. No more connections are allowed.</entry>
+                                <entry>The Icecast2 instance' source client limit was reached. No more source connections are allowed.</entry>
                             </row>
                             <row>
                                 <entry>403</entry>
                                 <entry>Mountpoint in use</entry>
-                                <entry>The client tried to connect to an occupied mountpoint. That means, another client is connected already.</entry>
+                                <entry>The client tried to connect to an occupied mountpoint. That means, another source lient is connected already.</entry>
                             </row>
                             <row>
                                 <entry>403</entry>
                                 <entry>busy, please try again later</entry>
-                                <entry></entry>
+                                <entry>The server is busy. The client should try again later.<footnote>This most likely indicates that the server is under heavy load or that backend servers do not keep up with requests from Icecast2. The client should not repeat the request too soon. A delay of at least a few seconds is strongly recommended.</footnote></entry>
                             </row>
                             <row>
                                 <entry>403</entry>
                                 <entry>Icecast connection limit reached</entry>
-                                <entry></entry>
+                                <entry>A server's client limit is reached. The client can try again later.</entry>
                             </row>
                             <row>
                                 <entry>403</entry>
                                 <entry>Reached limit of concurrent connections on those credentials</entry>
-                                <entry></entry>
+                                <entry>The server refuses the client's request as the user reached it's request limit. See <emphasis>Authentication</emphasis> for details.</entry>
                             </row>
                             <row>
                                 <entry>403</entry>
                                 <entry>Rejecting client for whatever reason</entry>
-                                <entry></entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>Forbidden</entry>
-                                <entry></entry>
+                                <entry>The server refused the client for internal reasons.</entry>
                             </row>
                             <row>
                                 <entry>404</entry>
                                 <entry>File Not Found</entry>
-                                <entry></entry>
+                                <entry>The requested resource was not found on the server.</entry>
                             </row>
                             <row>
                                 <entry>416</entry>
                                 <entry>Request Range Not Satisfiable</entry>
-                                <entry></entry>
+                                <entry>The range requested by the client is invalid or the resource can not provide the given range.</entry>
                             </row>
                             <row>
                                 <entry>426</entry>
                                 <entry>Upgrade Required</entry>
-                                <entry></entry>
+                                <entry>The request sent by the client can not be handled with the current protocol. The protocol must be switched. See also <emphasis>TLS</emphasis>.</entry>
                             </row>
                             <row>
                                 <entry>500</entry>
@@ -131,7 +121,7 @@
                             <row>
                                 <entry>501</entry>
                                 <entry>Unimplemented</entry>
-                                <entry></entry>
+                                <entry>The request seems to be valid but uses an option that is unsuported by the server.</entry>
                             </row>
                         </tbody>
                     </table>
