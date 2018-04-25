@@ -10,7 +10,7 @@ Specification | Description
 ## Credentials
 ### Authors
 
-@sebastian-weiss
+@sebastian-weiss @nacamar-phschafft
 
 ### Copyright
 
