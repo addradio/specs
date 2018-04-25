@@ -10,6 +10,6 @@ out:
 	mkdir -vp out
 
 out/%.md: src/%.xml
-	pandoc -f docbook -t markdown -o $@ $+
+	pandoc -f docbook -t markdown_github -o $@ $+
 
 .PHONY: all clean new
