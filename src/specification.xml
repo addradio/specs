@@ -168,6 +168,11 @@
                     </para>
                 </tip>
             </section>
+
+            <section>
+                <title>Metadata</title>
+                <para>Metadata is an important part of modern audio and video streaming. With Icecast2 metadata are transported as part of the transported datastream. All supported formats support metadata. Only for non-supported MP3 and AAC (and derivates) streams the ICY protocol must be used. This protocol is not part of this specification. For details see the corresponding documentation of the used streaming format. For ICY see the appendix in this document.</para>
+            </section>
         </section>
 
         <section>
@@ -617,4 +622,10 @@ icy-pub:0
     <chapter>
         <title>Tested and Certified Source Clients</title>
     </chapter>
+
+    <appendix>
+        <title>ICY Protocol</title>
+        <warning>This Appendix is informational only. It is not part of the specification.</warning>
+        <para>TODO</para>
+    </appendix>
 </book>
