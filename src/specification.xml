@@ -619,9 +619,9 @@ icy-pub:0
     <chapter>
         <title>Accessing administration interface and API</title>
     </chapter>
-    <chapter>
+    <appendix>
         <title>Tested and Certified Source Clients</title>
-    </chapter>
+    </appendix>
 
     <appendix>
         <title>ICY Protocol</title>
