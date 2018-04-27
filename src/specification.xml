@@ -8,8 +8,8 @@
         <para>Communication with Icecast2 is based on HTTP. Icecast2 implements HTTP/1.0 with a set of features from HTTP/1.1 and some usecase specific extensions. In addition Icecast2 may support other protocols such as ICY.</para>
         <section>
             <title>Protocol Specification</title>
-            <para>All Icecast2 clients connect to Icecast2 using the same server address. Mountpoints and general web access uses administor provided resource names. The administration interface and API is available below the resource prefix "/admin".</para>
-            <para>Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failture. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.</para>
+            <para>All Icecast2 clients connect to Icecast2 using the same server address. Mountpoints and general web access uses administrator provided resource names. The administration interface and API is available below the resource prefix "/admin".</para>
+            <para>Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failure. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.</para>
             <section>
                 <title>Error codes</title>
                 <para>The server may respond with any <link xlink:href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231 Section 6</link> status code. Below is a incomplete list of important status codes:
@@ -30,7 +30,7 @@
                             <row>
                                 <entry>101</entry>
                                 <entry>Switching Protocols</entry>
-                                <entry>This is sent by the server when the server preforms a protocol switch as requested by the client. This may happen e.g. in <emphasis>RFC 2818 mode</emphasis>.</entry>
+                                <entry>This is sent by the server when the server performs a protocol switch as requested by the client. This may happen e.g. in <emphasis>RFC 2818 mode</emphasis>.</entry>
                             </row>
                             <row>
                                 <entry>200</entry>
@@ -75,7 +75,7 @@
                             <row>
                                 <entry>403</entry>
                                 <entry>Mountpoint in use</entry>
-                                <entry>The client tried to connect to an occupied mountpoint. That means, another source lient is connected already.</entry>
+                                <entry>The client tried to connect to an occupied mountpoint. That means, another source client is connected already.</entry>
                             </row>
                             <row>
                                 <entry>403</entry>
@@ -115,12 +115,12 @@
                             <row>
                                 <entry>500</entry>
                                 <entry>Internal Server Error</entry>
-                                <entry>An internal Icecast server error occured</entry>
+                                <entry>An internal Icecast server error occurred</entry>
                             </row>
                             <row>
                                 <entry>501</entry>
                                 <entry>Unimplemented</entry>
-                                <entry>The request seems to be valid but uses an option that is unsuported by the server.</entry>
+                                <entry>The request seems to be valid but uses an option that is unsupported by the server.</entry>
                             </row>
                         </tbody>
                     </table>
@@ -134,7 +134,7 @@
             </section>
             <section>
                 <title>Transfer encodings</title>
-                <para>Icecast2 supports diffrent transfer encodings for sending data to Icecast2. A client is free to choice any of what is supported by the server. An application must consider what transfer encodings are announced by the server.</para>
+                <para>Icecast2 supports different transfer encodings for sending data to Icecast2. A client is free to choice any of what is supported by the server. An application must consider what transfer encodings are announced by the server.</para>
                 <para>The transfer encoding is announced by the server using the <code>Accept-Encoding</code> HTTP header.</para>
                 <table>
                     <thead>
@@ -158,10 +158,10 @@
                     </tbody>
                 </table>
                 <warning>Prior to Icecast2 2.5.0-beta.1 the server did not return error in case a unsupported transfer encoding was used by the client. Those servers only support the "identity" encoding.</warning>
-                <note>RFC 7230 removed the "identity" encoding from the standard. See <link xlink:href="https://tools.ietf.org/html/rfc7230#appendix-A.2">RFC 7230 Appendinx A.2</link> for details.</note>
+                <note>RFC 7230 removed the "identity" encoding from the standard. See <link xlink:href="https://tools.ietf.org/html/rfc7230#appendix-A.2">RFC 7230 Appendix A.2</link> for details.</note>
                 <tip>
                     <para>
-                        When chunked is not used as outmost transfer encoding the client can half-close the connection to signal the end of the request if the transport supports half-closed connections.
+                        When chunked is not used as outermost transfer encoding the client can half-close the connection to signal the end of the request if the transport supports half-closed connections.
                     </para>
                     <para>
                         On IEEE Std 1003.1 ("POSIX") systems this can be achieved calling <function>shutdown</function> with <constant>SHUT_WR</constant>.
@@ -388,7 +388,7 @@
             </section>
             <section xml:id="S100continue">
                 <title xml:id="S100continue.title">100-continue</title>
-                <para>The client should ask the server to send a 100-continue reply. This allows the server to reject the stream cleanly in case there is any problem. Such problems could be e.g. missmatch of credentials or unsupported parameters. Then the 100-continue reply is requested the server may reply with a 100-continue. The client should wait a resonable long time before starting to provide data if no reply has been received yet.</para>
+                <para>The client should ask the server to send a 100-continue reply. This allows the server to reject the stream cleanly in case there is any problem. Such problems could be e.g. mismatch of credentials or unsupported parameters. Then the 100-continue reply is requested the server may reply with a 100-continue. The client should wait a reasonable long time before starting to provide data if no reply has been received yet.</para>
                 <para>The 100-continue reply is requested by adding the following header to the request header:</para>
                 <programlisting>Expect: 100-continue</programlisting>
                 <warning>Up to Icecast2 2.4.3 there is a bug that causes the TLS connection to be abnormally terminated when using 100-continue and TLS. This has been fixed in Icecast2 2.4.4 and 2.5.0-beta.2.</warning>
@@ -400,7 +400,7 @@
             <para>This section lists example communication with an Icecast2 server for sending source streams. Information in &lt;&gt; are comments or special data.</para>
             <note>This section is not part of the specification.</note>
             <section>
-                <title>Successfull communication with Authentication and 100-continue</title>
+                <title>Successful communication with Authentication and 100-continue</title>
                 <para>This example demonstrates a successful communication between a Icecast2 server and a client using Authentication and 100-continue.</para>
                 <formalpara>
                     <title>Client to server: Initial request without authentication</title>
@@ -504,7 +504,7 @@ Access-Control-Allow-Origin: *
         <section>
             <title>Examples</title>
             <section>
-                <title>Successfull communication without Authentication</title>
+                <title>Successful communication without Authentication</title>
                 <para>This example demonstrates a successful communication between a Icecast2 server and a client.</para>
                 <formalpara>
                     <title>Client to server: Client requests the stream</title>
@@ -542,7 +542,7 @@ icy-pub:0
                 </formalpara>
             </section>
             <section>
-                <title>Successfull communication with Authentication</title>
+                <title>Successful communication with Authentication</title>
                 <para>This example demonstrates a successful communication between a Icecast2 server and a client. Authorization is used.</para>
                 <formalpara>
                     <title>Client to server: The client requests the stream with no authentication</title>
@@ -630,7 +630,7 @@ icy-pub:0
 
         <section>
             <title>ICY listener protocol</title>
-            <para>The ICY protocol is a protocol very similar to HTTP. Yet it is diffrent protocol, not a HTTP dialect. ICY implements multiplexing actual data with metadata. To activate the ICY mode clients must pass the header <parameter>Icy-MetaData</parameter> set to <constant>1</constant> in the request. Icecast2 may reply with an ICY response including a <parameter>icy-metaint</parameter> header. If such a header is detected the client must switch to ICY mode. The esponse must not be interpreted as HTTP.</para>
+            <para>The ICY protocol is a protocol very similar to HTTP. Yet it is different protocol, not a HTTP dialect. ICY implements multiplexing actual data with metadata. To activate the ICY mode clients must pass the header <parameter>Icy-MetaData</parameter> set to <constant>1</constant> in the request. Icecast2 may reply with an ICY response including a <parameter>icy-metaint</parameter> header. If such a header is detected the client must switch to ICY mode. The response must not be interpreted as HTTP.</para>
             <para>In ICY mode Icecast2 will send a block of metadata every <parameter>icy-metaint</parameter> bytes of payload. The metadata frame consists of a length byte and the metadata string. The length byte is the first byte in the frame. The frame length is 16 times the value of the length byte not including the length byte itself. The remainder of the frame is the frame is the metadata string. The is application specific. However it is common that the string is in format <code>Key0='Value0';Key1='Value1';[...]</code>. Common keys are <parameter>StreamTitle</parameter> and <parameter>StreamUrl</parameter> defining the current title, and URL for the stream. The frame is 0-byte-padded. If metadata is not to be updated a frame with the length byte of 0 is generated.</para>
         </section>
 
