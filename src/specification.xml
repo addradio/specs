@@ -626,6 +626,22 @@ icy-pub:0
     <appendix>
         <title>ICY Protocol</title>
         <warning>This Appendix is informational only. It is not part of the specification.</warning>
-        <para>TODO</para>
+        <para>The ICY source protocol is must not be used. The ICY listener protocol is however used for metadata transfer from Icecast2 to listeners for non-supported streaming formats such as MP3 and AAC. Those formats lack native support for metadata. Sources providing such formats to Icecast2 must use the described protocol using HTTP PUT. In addition they can use the corresponding API endpoint for metadata updates.</para>
+
+        <section>
+            <title>ICY listener protocol</title>
+            <para>The ICY protocol is a protocol very similar to HTTP. Yet it is diffrent protocol, not a HTTP dialect. ICY implements multiplexing actual data with metadata. To activate the ICY mode clients must pass the header <parameter>Icy-MetaData</parameter> set to <constant>1</constant> in the request. Icecast2 may reply with an ICY response including a <parameter>icy-metaint</parameter> header. If such a header is detected the client must switch to ICY mode. The esponse must not be interpreted as HTTP.</para>
+            <para>In ICY mode Icecast2 will send a block of metadata every <parameter>icy-metaint</parameter> bytes of payload. The metadata frame consists of a length byte and the metadata string. The length byte is the first byte in the frame. The frame length is 16 times the value of the length byte not including the length byte itself. The remainder of the frame is the frame is the metadata string. The is application specific. However it is common that the string is in format <code>Key0='Value0';Key1='Value1';[...]</code>. Common keys are <parameter>StreamTitle</parameter> and <parameter>StreamUrl</parameter> defining the current title, and URL for the stream. The frame is 0-byte-padded. If metadata is not to be updated a frame with the length byte of 0 is generated.</para>
+        </section>
+
+        <section>
+            <title>Metadata updates using API</title>
+            <warning>This must not be used for streaming formats supporting metadata.</warning>
+            <para>In order to update metadata for an ICY stream you must call the API endpoint <function>metadata</function>. The parameter <parameter>mount</parameter> must be set to the corresponding mount point. The parameter <parameter>mode</parameter> is set to the constant <constant>updinfo</constant>. The actual metadata are transported using the parameter <parameter>song</parameter>.</para>
+            <formalpara>
+                <title>Example URI</title>
+                <programlisting><![CDATA[https://icecast.example.org:8000/admin/metadata?mount=/mystream.mp3&mode=updinfo&song=My+Song+Title]]></programlisting>
+            </formalpara>
+        </section>
     </appendix>
 </book>
