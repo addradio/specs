@@ -14,115 +14,399 @@
                 <title>Status codes</title>
                 <para>The server may respond with any <link xlink:href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231 Section 6</link> status code. Below is a incomplete list of important status codes:
                     <table>
-                        <thead>
-                            <row>
-                                <entry>Code</entry>
-                                <entry>Text</entry>
-                                <entry>Description</entry>
-                            </row>
-                        </thead>
-                        <tbody>
-                            <row>
-                                <entry>100</entry>
-                                <entry>Continue</entry>
-                                <entry>Is sent if client requested it by adding the corresponding header to its request: <code>Expect: 100-continue</code>. See also Section <emphasis>100-continue</emphasis>.</entry>
-                            </row>
-                            <row>
-                                <entry>101</entry>
-                                <entry>Switching Protocols</entry>
-                                <entry>This is sent by the server when the server performs a protocol switch as requested by the client. This may happen e.g. in <emphasis>RFC 2818 mode</emphasis>.</entry>
-                            </row>
-                            <row>
-                                <entry>200</entry>
-                                <entry>OK</entry>
-                                <entry>Sent after source client stopped</entry>
-                            </row>
-                            <row>
-                                <entry>206</entry>
-                                <entry>Partial Content</entry>
-                                <entry>The server's replies with a range from a range request. See <link xlink:href="https://tools.ietf.org/html/rfc7233#section-4.1">RFC 7233 Section 4.1</link> for details.</entry>
-                            </row>
-                            <row>
-                                <entry>400</entry>
-                                <entry>Bad Request</entry>
-                                <entry>The client sent a request that was not understood by the server.</entry>
-                            </row>
-                            <row>
-                                <entry>401</entry>
-                                <entry>Authentication Required</entry>
-                                <entry>No or invalid authentication data was provided. See also Section <emphasis>Authentication</emphasis>.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>Content-type not supported</entry>
-                                <entry>The supplied content type is not supported. See also Section <emphasis>Content Types</emphasis>.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>No Content-type given</entry>
-                                <entry>Header field <code>Content-Type</code> was not set but is mandatory. See also Section <emphasis>Content Types</emphasis>.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>internal format allocation problem</entry>
-                                <entry>There was a problem allocating the format handler. This is an internal Icecast2 problem.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>too many sources connected</entry>
-                                <entry>The Icecast2 instance' source client limit was reached. No more source connections are allowed.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>Mountpoint in use</entry>
-                                <entry>The client tried to connect to an occupied mountpoint. That means, another source client is connected already.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>busy, please try again later</entry>
-                                <entry>The server is busy. The client should try again later.<footnote>This most likely indicates that the server is under heavy load or that backend servers do not keep up with requests from Icecast2. The client should not repeat the request too soon. A delay of at least a few seconds is strongly recommended.</footnote></entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>Icecast connection limit reached</entry>
-                                <entry>A server's client limit is reached. The client can try again later.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>Reached limit of concurrent connections on those credentials</entry>
-                                <entry>The server refuses the client's request as the user reached it's request limit. See <emphasis>Authentication</emphasis> for details.</entry>
-                            </row>
-                            <row>
-                                <entry>403</entry>
-                                <entry>Rejecting client for whatever reason</entry>
-                                <entry>The server refused the client for internal reasons.</entry>
-                            </row>
-                            <row>
-                                <entry>404</entry>
-                                <entry>File Not Found</entry>
-                                <entry>The requested resource was not found on the server.</entry>
-                            </row>
-                            <row>
-                                <entry>416</entry>
-                                <entry>Request Range Not Satisfiable</entry>
-                                <entry>The range requested by the client is invalid or the resource can not provide the given range.</entry>
-                            </row>
-                            <row>
-                                <entry>426</entry>
-                                <entry>Upgrade Required</entry>
-                                <entry>The request sent by the client can not be handled with the current protocol. The protocol must be switched. See also <emphasis>TLS</emphasis>.</entry>
-                            </row>
-                            <row>
-                                <entry>500</entry>
-                                <entry>Internal Server Error</entry>
-                                <entry>An internal Icecast server error occurred</entry>
-                            </row>
-                            <row>
-                                <entry>501</entry>
-                                <entry>Unimplemented</entry>
-                                <entry>The request seems to be valid but uses an option that is unsupported by the server.</entry>
-                            </row>
-                        </tbody>
+                        <tgroup rowsep="0">
+                            <colspec colname="statuscode" />
+                            <colspec colname="statustext" />
+                            <colspec colname="uuid" />
+                            <colspec colname="body" />
+                            <spanspec spanname="textspan" namest="statuscode" nameend="body" rowsep="1" />
+
+                            <thead>
+                                <row>
+                                    <entry>Status Code</entry>
+                                    <entry>Reason Phrase</entry>
+                                    <entry>UUID</entry>
+                                    <entry>Body</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Description</entry>
+                                </row>
+                            </thead>
+
+                            <tbody>
+                                <!-- Informational responses -->
+                                <row>
+                                    <entry>100</entry>
+                                    <entry>Continue</entry>
+                                    <entry></entry>
+                                    <entry>none</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Is sent if client requested it by adding the corresponding header to its request: <code>Expect: 100-continue</code>. See also Section <emphasis>100-continue</emphasis>.</entry>
+                                </row>
+                                <row>
+                                    <entry>101</entry>
+                                    <entry>Switching Protocols</entry>
+                                    <entry></entry>
+                                    <entry>none</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">This is sent by the server when the server performs a protocol switch as requested by the client. This may happen e.g. in <emphasis>RFC 2818 mode</emphasis>.</entry>
+                                </row>
+
+                                <!-- Success -->
+                                <row>
+                                    <entry>200</entry>
+                                    <entry>OK</entry>
+                                    <entry></entry>
+                                    <entry>depending on request</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Sent after source client stopped</entry>
+                                </row>
+                                <row>
+                                    <entry>206</entry>
+                                    <entry>Partial Content</entry>
+                                    <entry></entry>
+                                    <entry>depending on request</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The server's replies with a range from a range request. See <link xlink:href="https://tools.ietf.org/html/rfc7233#section-4.1">RFC 7233 Section 4.1</link> for details.</entry>
+                                </row>
+
+                                <!-- Client errors -->
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>1ae45ead-40fc-4de2-b56f-e54d3247f2ee</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Source's mountpoint does not begin with a slash ("/").</entry>
+                                </row>
+
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>2cd86778-ac30-49e7-a108-26d627a7923b</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Header field <code>Content-Type</code> was not set but is mandatory. See also Section <emphasis>Content Types</emphasis>.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>ec16f654-f262-415f-ab91-95703ae33704</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The client tried to upgrade to a protocol the server is not willing to upgrade to.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>811bddac-5be5-4580-9cde-7b849e66dfe5</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The client sent an unrecognized API or admin command.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>cb11dc71-6149-454c-8d4e-47a3af26b03a</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The request misses a GET or POST parameter that is required for request.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>00b9d977-f41d-455f-820f-6d457dffb246</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">API or admin request on a source that exists but is not available at this point.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>52735a81-16fe-4d7e-9984-5aed8a941055</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">API or admin request with destination source not available.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>400</entry>
+                                    <entry>Bad Request</entry>
+                                    <entry>4be9a010-7a3f-44e4-b74d-3c6d9c4f7236</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">API or admin request points to same source for source and destination.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>401</entry>
+                                    <entry>Authentication Required</entry>
+                                    <entry>25387198-0643-4577-9139-7c4f24f59d4a</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">No or invalid authentication data was provided. See also Section <emphasis>Authentication</emphasis>.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>404</entry>
+                                    <entry>File Not Found</entry>
+                                    <entry>18c32b43-0d8e-469d-b434-10133cdd06ad</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The requested resource was not found on the server.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>404</entry>
+                                    <entry>File Not Found</entry>
+                                    <entry>f966870a-e3d1-4a33-a728-f0cbac0b90f3</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Source related API or admin command not found.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>404</entry>
+                                    <entry>File Not Found</entry>
+                                    <entry>a96442e7-ca74-4ef7-8fcf-69ed057a5841</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Global API or admin command not found.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>404</entry>
+                                    <entry>File Not Found</entry>
+                                    <entry>2f51a026-02e4-4fe4-bf9d-cc16557b3b65</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Source does not exist.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>404</entry>
+                                    <entry>File Not Found</entry>
+                                    <entry>c5f1ee06-46a0-4697-9f01-6e9fc333d555</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Destination does not exist.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>404</entry>
+                                    <entry>File Not Found</entry>
+                                    <entry>59fe9c81-8c34-49ff-800f-7ec42ea498be</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Role not found.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>405</entry>
+                                    <entry>Method Not Allowed</entry>
+                                    <entry>78f590cc-8812-40d5-a4ef-17344ab75b35</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The client used a method that was not understood by the server or is not allowed on the requested resource.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>409</entry>
+                                    <entry>Conflict</entry>
+                                    <entry>c5724467-5f85-48c7-b45a-915c3150c292</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The client sent a request for creation or manipulation of a mountpoint that already exists.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>415</entry>
+                                    <entry>Unsupported Media Type</entry>
+                                    <entry>f684ad3c-513b-4d87-9a66-424788bc6adb</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Client's Content-Type is not supported by the server.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>416</entry>
+                                    <entry>Request Range Not Satisfiable</entry>
+                                    <entry>5874cc51-770b-42b5-82d2-737b2b406b30</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The range that was requested by the client can not be satisfied by the server.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>426</entry>
+                                    <entry>Upgrade Required</entry>
+                                    <entry></entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The client send the request using a protocol that is not permitted for the request. The client is required to upgrade the the protocol listed in the <code>Upgrade:</code>-Header.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>429</entry>
+                                    <entry>Too Many Requests</entry>
+                                    <entry>9c72c1ec-f638-4d33-a077-6acbbff25317</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The request was declined by the server as the client reached the concurrent connection limit of the used credentials.</entry>
+                                </row>
+
+                                <!-- Server errors -->
+                                <row>
+                                    <entry>500</entry>
+                                    <entry>Internal Server Error</entry>
+                                    <entry>47a4b11b-5d2a-46e2-8948-942e7b0af3e6</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The server was unable to allocate the format.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>500</entry>
+                                    <entry>Internal Server Error</entry>
+                                    <entry>cda8203e-f237-4090-8d43-544efdd6295c</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The server was unable to reallocate internal buffers.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>500</entry>
+                                    <entry>Internal Server Error</entry>
+                                    <entry>a8b3c3fe-cb87-45fe-9a9d-ee4c2075d43a</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The server was unable to generate headers for a proper response.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>500</entry>
+                                    <entry>Internal Server Error</entry>
+                                    <entry>d3c6e4b3-7d6e-4191-a81b-970273067ae3</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The server was unable to render a XSLT document.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>501</entry>
+                                    <entry>Unimplemented</entry>
+                                    <entry>3bed51bb-a10f-4af3-9965-4e67181de7d6</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">The source does not accept metadata updates via ABI or admin command.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>501</entry>
+                                    <entry>Unimplemented</entry>
+                                    <entry>7e1a8426-2ae1-4a6b-bfd9-59d8f8153021</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Adding new users to role not supported by role.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>501</entry>
+                                    <entry>Unimplemented</entry>
+                                    <entry>367fbad1-389e-4292-bba8-c97984e616cc</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Deleting users from role not supported by role.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>501</entry>
+                                    <entry>Unimplemented</entry>
+                                    <entry>58ce6cb4-72b4-49da-8ad2-feaf775bc61e</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Client sent an request with a Transfer-Encoding not supported by the server.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>503</entry>
+                                    <entry>Service Unavailable</entry>
+                                    <entry>26708754-8f98-4191-81d1-7fb7246200d6</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Server is currently busy. Try again later.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>503</entry>
+                                    <entry>Service Unavailable</entry>
+                                    <entry>c770182d-c854-422a-a8e5-7142689234a3</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Too many source are currently connected. Try again later.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>503</entry>
+                                    <entry>Service Unavailable</entry>
+                                    <entry>87fd3e61-6702-4473-b506-f616d27a142f</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Too many clients are currently connected. Try again later.</entry>
+                                </row>
+
+                                <row>
+                                    <entry>503</entry>
+                                    <entry>Service Unavailable</entry>
+                                    <entry>18411e73-713e-4910-b7e4-52a2e324b4e0</entry>
+                                    <entry>Error report</entry>
+                                </row>
+                                <row>
+                                    <entry spanname="textspan">Memory exhausted. Try again later.</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
                     </table>
                 </para>
             </section>
