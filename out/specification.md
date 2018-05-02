@@ -6,36 +6,90 @@ Communication with Icecast2 is based on HTTP. Icecast2 implements HTTP/1.0 with 
 Protocol Specification
 ----------------------
 
-All Icecast2 clients connect to Icecast2 using the same server address. Mountpoints and general web access uses administor provided resource names. The administration interface and API is available below the resource prefix "/admin".
+All Icecast2 clients connect to Icecast2 using the same server address. Mountpoints and general web access uses administrator provided resource names. The administration interface and API is available below the resource prefix "/admin".
 
-Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failture. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.
+Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failure. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.
 
-### Error codes
+### Status codes
 
 The server may respond with any [RFC 7231 Section 6](https://tools.ietf.org/html/rfc7231#section-6) status code. Below is a incomplete list of important status codes:
 
-| Code | Text                                                         | Description                                                                                                                                      |
-|------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| 100  | Continue                                                     | Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`. See also Section *100-continue*.       |
-| 101  | Switching Protocols                                          | This is sent by the server when the server preforms a protocol switch as requested by the client. This may happen e.g. in *RFC 2818 mode*.       |
-| 200  | OK                                                           | Sent after source client stopped                                                                                                                 |
-| 206  | Partial Content                                              | The server's replies with a range from a range request. See [RFC 7233 Section 4.1](https://tools.ietf.org/html/rfc7233#section-4.1) for details. |
-| 400  | Bad Request                                                  | The client sent a request that was not understood by the server.                                                                                 |
-| 401  | Authentication Required                                      | No or invalid authentication data was provided. See also Section *Authentication*.                                                               |
-| 403  | Content-type not supported                                   | The supplied content type is not supported. See also Section *Content Types*.                                                                    |
-| 403  | No Content-type given                                        | Header field `Content-Type` was not set but is mandatory. See also Section *Content Types*.                                                      |
-| 403  | internal format allocation problem                           | There was a problem allocating the format handler. This is an internal Icecast2 problem.                                                         |
-| 403  | too many sources connected                                   | The Icecast2 instance' source client limit was reached. No more source connections are allowed.                                                  |
-| 403  | Mountpoint in use                                            | The client tried to connect to an occupied mountpoint. That means, another source lient is connected already.                                    |
-| 403  | busy, please try again later                                 | The server is busy. The client should try again later.[1]                                                                                        |
-| 403  | Icecast connection limit reached                             | A server's client limit is reached. The client can try again later.                                                                              |
-| 403  | Reached limit of concurrent connections on those credentials | The server refuses the client's request as the user reached it's request limit. See *Authentication* for details.                                |
-| 403  | Rejecting client for whatever reason                         | The server refused the client for internal reasons.                                                                                              |
-| 404  | File Not Found                                               | The requested resource was not found on the server.                                                                                              |
-| 416  | Request Range Not Satisfiable                                | The range requested by the client is invalid or the resource can not provide the given range.                                                    |
-| 426  | Upgrade Required                                             | The request sent by the client can not be handled with the current protocol. The protocol must be switched. See also *TLS*.                      |
-| 500  | Internal Server Error                                        | An internal Icecast server error occured                                                                                                         |
-| 501  | Unimplemented                                                | The request seems to be valid but uses an option that is unsuported by the server.                                                               |
+| Status Code                                                                                                                                                             | Reason Phrase                 | UUID                                 | Body                 |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|--------------------------------------|----------------------|
+| 100                                                                                                                                                                     | Continue                      |                                      | none                 |
+| Is sent if client requested it by adding the corresponding header to its request: `Expect: 100-continue`. See also Section *100-continue*.                              |
+| 101                                                                                                                                                                     | Switching Protocols           |                                      | none                 |
+| This is sent by the server when the server performs a protocol switch as requested by the client. This may happen e.g. in *RFC 2818 mode*.                              |
+| 200                                                                                                                                                                     | OK                            |                                      | depending on request |
+| Sent after source client stopped                                                                                                                                        |
+| 206                                                                                                                                                                     | Partial Content               |                                      | depending on request |
+| The server's replies with a range from a range request. See [RFC 7233 Section 4.1](https://tools.ietf.org/html/rfc7233#section-4.1) for details.                        |
+| 400                                                                                                                                                                     | Bad Request                   | 1ae45ead-40fc-4de2-b56f-e54d3247f2ee | Error report         |
+| Source's mountpoint does not begin with a slash ("/").                                                                                                                  |
+| 400                                                                                                                                                                     | Bad Request                   | 2cd86778-ac30-49e7-a108-26d627a7923b | Error report         |
+| Header field `Content-Type` was not set but is mandatory. See also Section *Content Types*.                                                                             |
+| 400                                                                                                                                                                     | Bad Request                   | ec16f654-f262-415f-ab91-95703ae33704 | Error report         |
+| The client tried to upgrade to a protocol the server is not willing to upgrade to.                                                                                      |
+| 400                                                                                                                                                                     | Bad Request                   | 811bddac-5be5-4580-9cde-7b849e66dfe5 | Error report         |
+| The client sent an unrecognized API or admin command.                                                                                                                   |
+| 400                                                                                                                                                                     | Bad Request                   | cb11dc71-6149-454c-8d4e-47a3af26b03a | Error report         |
+| The request misses a GET or POST parameter that is required for request.                                                                                                |
+| 400                                                                                                                                                                     | Bad Request                   | 00b9d977-f41d-455f-820f-6d457dffb246 | Error report         |
+| API or admin request on a source that exists but is not available at this point.                                                                                        |
+| 400                                                                                                                                                                     | Bad Request                   | 52735a81-16fe-4d7e-9984-5aed8a941055 | Error report         |
+| API or admin request with destination source not available.                                                                                                             |
+| 400                                                                                                                                                                     | Bad Request                   | 4be9a010-7a3f-44e4-b74d-3c6d9c4f7236 | Error report         |
+| API or admin request points to same source for source and destination.                                                                                                  |
+| 401                                                                                                                                                                     | Authentication Required       | 25387198-0643-4577-9139-7c4f24f59d4a | Error report         |
+| No or invalid authentication data was provided. See also Section *Authentication*.                                                                                      |
+| 404                                                                                                                                                                     | File Not Found                | 18c32b43-0d8e-469d-b434-10133cdd06ad | Error report         |
+| The requested resource was not found on the server.                                                                                                                     |
+| 404                                                                                                                                                                     | File Not Found                | f966870a-e3d1-4a33-a728-f0cbac0b90f3 | Error report         |
+| Source related API or admin command not found.                                                                                                                          |
+| 404                                                                                                                                                                     | File Not Found                | a96442e7-ca74-4ef7-8fcf-69ed057a5841 | Error report         |
+| Global API or admin command not found.                                                                                                                                  |
+| 404                                                                                                                                                                     | File Not Found                | 2f51a026-02e4-4fe4-bf9d-cc16557b3b65 | Error report         |
+| Source does not exist.                                                                                                                                                  |
+| 404                                                                                                                                                                     | File Not Found                | c5f1ee06-46a0-4697-9f01-6e9fc333d555 | Error report         |
+| Destination does not exist.                                                                                                                                             |
+| 404                                                                                                                                                                     | File Not Found                | 59fe9c81-8c34-49ff-800f-7ec42ea498be | Error report         |
+| Role not found.                                                                                                                                                         |
+| 405                                                                                                                                                                     | Method Not Allowed            | 78f590cc-8812-40d5-a4ef-17344ab75b35 | Error report         |
+| The client used a method that was not understood by the server or is not allowed on the requested resource.                                                             |
+| 409                                                                                                                                                                     | Conflict                      | c5724467-5f85-48c7-b45a-915c3150c292 | Error report         |
+| The client sent a request for creation or manipulation of a mountpoint that already exists.                                                                             |
+| 415                                                                                                                                                                     | Unsupported Media Type        | f684ad3c-513b-4d87-9a66-424788bc6adb | Error report         |
+| Client's Content-Type is not supported by the server.                                                                                                                   |
+| 416                                                                                                                                                                     | Request Range Not Satisfiable | 5874cc51-770b-42b5-82d2-737b2b406b30 | Error report         |
+| The range that was requested by the client can not be satisfied by the server.                                                                                          |
+| 426                                                                                                                                                                     | Upgrade Required              |                                      | Error report         |
+| The client send the request using a protocol that is not permitted for the request. The client is required to upgrade the the protocol listed in the `Upgrade:`-Header. |
+| 429                                                                                                                                                                     | Too Many Requests             | 9c72c1ec-f638-4d33-a077-6acbbff25317 | Error report         |
+| The request was declined by the server as the client reached the concurrent connection limit of the used credentials.                                                   |
+| 500                                                                                                                                                                     | Internal Server Error         | 47a4b11b-5d2a-46e2-8948-942e7b0af3e6 | Error report         |
+| The server was unable to allocate the format.                                                                                                                           |
+| 500                                                                                                                                                                     | Internal Server Error         | cda8203e-f237-4090-8d43-544efdd6295c | Error report         |
+| The server was unable to reallocate internal buffers.                                                                                                                   |
+| 500                                                                                                                                                                     | Internal Server Error         | a8b3c3fe-cb87-45fe-9a9d-ee4c2075d43a | Error report         |
+| The server was unable to generate headers for a proper response.                                                                                                        |
+| 500                                                                                                                                                                     | Internal Server Error         | d3c6e4b3-7d6e-4191-a81b-970273067ae3 | Error report         |
+| The server was unable to render a XSLT document.                                                                                                                        |
+| 501                                                                                                                                                                     | Unimplemented                 | 3bed51bb-a10f-4af3-9965-4e67181de7d6 | Error report         |
+| The source does not accept metadata updates via ABI or admin command.                                                                                                   |
+| 501                                                                                                                                                                     | Unimplemented                 | 7e1a8426-2ae1-4a6b-bfd9-59d8f8153021 | Error report         |
+| Adding new users to role not supported by role.                                                                                                                         |
+| 501                                                                                                                                                                     | Unimplemented                 | 367fbad1-389e-4292-bba8-c97984e616cc | Error report         |
+| Deleting users from role not supported by role.                                                                                                                         |
+| 501                                                                                                                                                                     | Unimplemented                 | 58ce6cb4-72b4-49da-8ad2-feaf775bc61e | Error report         |
+| Client sent an request with a Transfer-Encoding not supported by the server.                                                                                            |
+| 503                                                                                                                                                                     | Service Unavailable           | 26708754-8f98-4191-81d1-7fb7246200d6 | Error report         |
+| Server is currently busy. Try again later.                                                                                                                              |
+| 503                                                                                                                                                                     | Service Unavailable           | c770182d-c854-422a-a8e5-7142689234a3 | Error report         |
+| Too many source are currently connected. Try again later.                                                                                                               |
+| 503                                                                                                                                                                     | Service Unavailable           | 87fd3e61-6702-4473-b506-f616d27a142f | Error report         |
+| Too many clients are currently connected. Try again later.                                                                                                              |
+| 503                                                                                                                                                                     | Service Unavailable           | 18411e73-713e-4910-b7e4-52a2e324b4e0 | Error report         |
+| Memory exhausted. Try again later.                                                                                                                                      |
 
 ### Authentication
 
@@ -47,7 +101,7 @@ The client must support the "Basic" authentication scheme.
 
 ### Transfer encodings
 
-Icecast2 supports diffrent transfer encodings for sending data to Icecast2. A client is free to choice any of what is supported by the server. An application must consider what transfer encodings are announced by the server.
+Icecast2 supports different transfer encodings for sending data to Icecast2. A client is free to choice any of what is supported by the server. An application must consider what transfer encodings are announced by the server.
 
 The transfer encoding is announced by the server using the `Accept-Encoding` HTTP header.
 
@@ -63,14 +117,18 @@ The transfer encoding is announced by the server using the `Accept-Encoding` HTT
 > **Note**
 >
 > RFC 7230 removed the "identity" encoding from the standard. See
-> RFC 7230 Appendinx A.2
+> RFC 7230 Appendix A.2
 > for details.
 
 > **Tip**
 >
-> When chunked is not used as outmost transfer encoding the client can half-close the connection to signal the end of the request if the transport supports half-closed connections.
+> When chunked is not used as outermost transfer encoding the client can half-close the connection to signal the end of the request if the transport supports half-closed connections.
 >
 > On IEEE Std 1003.1 ("POSIX") systems this can be achieved calling `shutdown` with `SHUT_WR`.
+
+### Metadata
+
+Metadata is an important part of modern audio and video streaming. With Icecast2 metadata are transported as part of the transported datastream. All supported formats support metadata. Only for non-supported MP3 and AAC (and derivates) streams the ICY protocol must be used. This protocol is not part of this specification. For details see the corresponding documentation of the used streaming format. For ICY see the appendix in this document.
 
 TLS
 ---
@@ -80,7 +138,7 @@ Icecast2 has TLS support included. Available TLS versions and options depend on 
 | Mode     | min. Icecast2 version | Comment                       |
 |----------|-----------------------|-------------------------------|
 | RFC 2817 | Icecast2 2.3.2        | HTTP over TLS                 |
-| RFC 2818 | Icecast2 2.5.0-beta.1 | Upgrade to TLS within HTTP[2] |
+| RFC 2818 | Icecast2 2.5.0-beta.1 | Upgrade to TLS within HTTP[1] |
 
 > **Note**
 >
@@ -149,7 +207,7 @@ Sending data to the server is done by:
 
 ### 100-continue
 
-The client should ask the server to send a 100-continue reply. This allows the server to reject the stream cleanly in case there is any problem. Such problems could be e.g. missmatch of credentials or unsupported parameters. Then the 100-continue reply is requested the server may reply with a 100-continue. The client should wait a resonable long time before starting to provide data if no reply has been received yet.
+The client should ask the server to send a 100-continue reply. This allows the server to reject the stream cleanly in case there is any problem. Such problems could be e.g. mismatch of credentials or unsupported parameters. Then the 100-continue reply is requested the server may reply with a 100-continue. The client should wait a reasonable long time before starting to provide data if no reply has been received yet.
 
 The 100-continue reply is requested by adding the following header to the request header:
 
@@ -168,7 +226,7 @@ This section lists example communication with an Icecast2 server for sending sou
 >
 > This section is not part of the specification.
 
-### Successfull communication with Authentication and 100-continue
+### Successful communication with Authentication and 100-continue
 
 This example demonstrates a successful communication between a Icecast2 server and a client using Authentication and 100-continue.
 
@@ -273,7 +331,7 @@ Listener clients request the corresponding stream using HTTP GET. Clients should
 Examples
 --------
 
-### Successfull communication without Authentication
+### Successful communication without Authentication
 
 This example demonstrates a successful communication between a Icecast2 server and a client.
 
@@ -311,7 +369,7 @@ The server does have the corresponding resource and allows access. Therefore it 
     <blank line>
     <data>
 
-### Successfull communication with Authentication
+### Successful communication with Authentication
 
 This example demonstrates a successful communication between a Icecast2 server and a client. Authorization is used.
 
@@ -389,6 +447,33 @@ Accessing administration interface and API
 Tested and Certified Source Clients
 ===================================
 
-[1] This most likely indicates that the server is under heavy load or that backend servers do not keep up with requests from Icecast2. The client should not repeat the request too soon. A delay of at least a few seconds is strongly recommended.
+ICY Protocol
+============
 
-[2] This is similar to what other protocols call "STARTTLS".
+> **Warning**
+>
+> This Appendix is informational only. It is not part of the specification.
+
+The ICY source protocol is must not be used. The ICY listener protocol is however used for metadata transfer from Icecast2 to listeners for non-supported streaming formats such as MP3 and AAC. Those formats lack native support for metadata. Sources providing such formats to Icecast2 must use the described protocol using HTTP PUT. In addition they can use the corresponding API endpoint for metadata updates.
+
+ICY listener protocol
+---------------------
+
+The ICY protocol is a protocol very similar to HTTP. Yet it is different protocol, not a HTTP dialect. ICY implements multiplexing actual data with metadata. To activate the ICY mode clients must pass the header `Icy-MetaData` set to `1` in the request. Icecast2 may reply with an ICY response including a `icy-metaint` header. If such a header is detected the client must switch to ICY mode. The response must not be interpreted as HTTP.
+
+In ICY mode Icecast2 will send a block of metadata every `icy-metaint` bytes of payload. The metadata frame consists of a length byte and the metadata string. The length byte is the first byte in the frame. The frame length is 16 times the value of the length byte not including the length byte itself. The remainder of the frame is the frame is the metadata string. The is application specific. However it is common that the string is in format `Key0='Value0';Key1='Value1';[...]`. Common keys are `StreamTitle` and `StreamUrl` defining the current title, and URL for the stream. The frame is 0-byte-padded. If metadata is not to be updated a frame with the length byte of 0 is generated.
+
+Metadata updates using API
+--------------------------
+
+> **Warning**
+>
+> This must not be used for streaming formats supporting metadata.
+
+In order to update metadata for an ICY stream you must call the API endpoint `metadata`. The parameter `mount` must be set to the corresponding mount point. The parameter `mode` is set to the constant `updinfo`. The actual metadata are transported using the parameter `song`.
+
+**Example URI.**
+
+    https://icecast.example.org:8000/admin/metadata?mount=/mystream.mp3&mode=updinfo&song=My+Song+Title
+
+[1] This is similar to what other protocols call "STARTTLS".
