@@ -924,7 +924,7 @@ icy-pub:0
             <para>In order to update metadata for an ICY stream you must call the API endpoint <function>metadata</function>. The parameter <parameter>mount</parameter> must be set to the corresponding mount point. The parameter <parameter>mode</parameter> is set to the constant <constant>updinfo</constant>. The actual metadata are transported using the parameter <parameter>song</parameter>.</para>
             <formalpara>
                 <title>Example URI</title>
-                <programlisting><![CDATA[https://icecast.example.org:8000/admin/metadata?mount=/mystream.mp3&mode=updinfo&song=My+Song+Title]]></programlisting>
+                <programlisting><![CDATA[https://icecast.example.org:8000/admin/metadata?mount=%2Fmystream.mp3&mode=updinfo&song=My+Song+Title]]></programlisting>
             </formalpara>
         </section>
     </appendix>
