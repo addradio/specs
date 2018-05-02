@@ -11,7 +11,7 @@
             <para>All Icecast2 clients connect to Icecast2 using the same server address. Mountpoints and general web access uses administrator provided resource names. The administration interface and API is available below the resource prefix "/admin".</para>
             <para>Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failure. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.</para>
             <section>
-                <title>Error codes</title>
+                <title>Status codes</title>
                 <para>The server may respond with any <link xlink:href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231 Section 6</link> status code. Below is a incomplete list of important status codes:
                     <table>
                         <thead>
