@@ -662,7 +662,8 @@
                     <orderedlist>
                         <listitem><para>Optionally a TLS connection is established between client and server.</para></listitem>
                         <listitem><para>A PUT request is sent by the client without authentication data.</para></listitem>
-                        <listitem><para>Optionally the server may refuse the request if authentication is required. The client then repeats the request with authentication data provided.</para></listitem>
+                        <listitem><para>Optionally the server may refuse the request if authentication is required.</para></listitem>
+                        <listitem><para>If the server refused the request because of missing authenticationtThe client then repeats the request with authentication data provided.</para></listitem>
                         <listitem><para>Optionally the server replies with a 100-continue message.</para></listitem>
                         <listitem><para>The client sends the stream in negotiated transfer encoding.</para></listitem>
                         <listitem><para>The server replies with a final 200-OK.</para></listitem>
