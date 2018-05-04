@@ -662,7 +662,8 @@
                     <orderedlist>
                         <listitem><para>Optionally a TLS connection is established between client and server.</para></listitem>
                         <listitem><para>A PUT request is sent by the client without authentication data.</para></listitem>
-                        <listitem><para>Optionally the server may refuse the request if authentication is required. The client then repeats the request with authentication data provided.</para></listitem>
+                        <listitem><para>Optionally the server may refuse the request if authentication is required.</para></listitem>
+                        <listitem><para>If the server refused the request because of missing authenticationtThe client then repeats the request with authentication data provided.</para></listitem>
                         <listitem><para>Optionally the server replies with a 100-continue message.</para></listitem>
                         <listitem><para>The client sends the stream in negotiated transfer encoding.</para></listitem>
                         <listitem><para>The server replies with a final 200-OK.</para></listitem>
@@ -924,7 +925,7 @@ icy-pub:0
             <para>In order to update metadata for an ICY stream you must call the API endpoint <function>metadata</function>. The parameter <parameter>mount</parameter> must be set to the corresponding mount point. The parameter <parameter>mode</parameter> is set to the constant <constant>updinfo</constant>. The actual metadata are transported using the parameter <parameter>song</parameter>.</para>
             <formalpara>
                 <title>Example URI</title>
-                <programlisting><![CDATA[https://icecast.example.org:8000/admin/metadata?mount=/mystream.mp3&mode=updinfo&song=My+Song+Title]]></programlisting>
+                <programlisting><![CDATA[https://icecast.example.org:8000/admin/metadata?mount=%2Fmystream.mp3&mode=updinfo&song=My+Song+Title]]></programlisting>
             </formalpara>
         </section>
     </appendix>
