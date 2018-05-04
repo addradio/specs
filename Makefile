@@ -3,10 +3,11 @@ TARGETS_RAW	= $(foreach c,$(shell xsltproc count.xsl src/specification.xml),out/
 TARGETS_MD	= $(foreach c,$(TARGETS_RAW),$c.md)
 TARGETS_HTML	= $(foreach c,$(TARGETS_RAW),$c.html)
 TARGETS		= $(TARGETS_MD)
+TARGETS_ALL	= $(TARGETS) $(TARGETS_HTML)
 
 all: out $(TARGETS)
 clean:
-	rm -f $(TARGETS)
+	rm -f $(TARGETS_ALL)
 new: clean all
 
 html: all $(TARGETS_HTML)
