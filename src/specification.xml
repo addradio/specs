@@ -15,41 +15,45 @@
                 <para>Any kind of client must send a proper HTTP request. There are some header fields a client must or should include.</para>
                 <formalpara>
                     <title>Mandatory header fields</title>
-                    <variablelist>
-                        <varlistentry>
-                            <term><code>Host:</code></term>
-                            <listitem><para>Any client must send a <code>Host:</code>-header. If the underlying transport supports ports the port must be given in the header. The client must send the <code>Host:</code>-headr als the first header after the request line. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7230#section-5.4">RFC 7230 Section 5.4</link> stay valid.</para></listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term><code>Accept:</code></term>
-                            <listitem><para>Any client must send a <code>Accept:</code>-header listening acceptable content encodings. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.3.2">RFC 7231 Section 5.4.2</link> stay valid.</para></listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term><code>User-Agent:</code></term>
-                            <listitem><para>Any cliet must send a <code>User-Agent:</code>-header. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.3">RFC 7231 Section 5.5.3</link> stay valid.</para></listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>
+                        <variablelist>
+                            <varlistentry>
+                                <term><code>Host:</code></term>
+                                <listitem><para>Any client must send a <code>Host:</code>-header. If the underlying transport supports ports the port must be given in the header. The client must send the <code>Host:</code>-headr als the first header after the request line. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7230#section-5.4">RFC 7230 Section 5.4</link> stay valid.</para></listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term><code>Accept:</code></term>
+                                <listitem><para>Any client must send a <code>Accept:</code>-header listening acceptable content encodings. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.3.2">RFC 7231 Section 5.4.2</link> stay valid.</para></listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term><code>User-Agent:</code></term>
+                                <listitem><para>Any cliet must send a <code>User-Agent:</code>-header. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.3">RFC 7231 Section 5.5.3</link> stay valid.</para></listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </para>
                 </formalpara>
                 <formalpara>
                     <title>Optional header fields</title>
-                    <variablelist>
-                        <varlistentry>
-                            <term><code>Referer:</code></term>
-                            <listitem><para>Any client that was directed to the requested resource by another resource must include a <code>Referer:</code>-header. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.2">RFC 7231 Section 5.5.2</link> stay valid.</para></listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term><code>From:</code></term>
-                            <listitem><para>Any client may send a <code>From:</code>-header to allow contacting the operator in case of problems. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.1">RFC 7231 Section 5.5.1</link> stay valid.</para></listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term><code>Accept-Charset:</code></term>
-                            <listitem><para>All clients should send a <code>Accept-Charset:</code>-header to inform the server about charsets the client supports. Every client must support UTF-8. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.3.3">RFC 7231 Section 5.3.3</link> stay valid.</para></listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term><code>Accept-Language:</code></term>
-                            <listitem><para>All clients should send a <code>Accept-Language:</code>-header. This allows to the server to select a response in a language understood by the operator. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.5">RFC 7231 Section 5.5.5</link> stay valid.</para></listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>
+                        <variablelist>
+                            <varlistentry>
+                                <term><code>Referer:</code></term>
+                                <listitem><para>Any client that was directed to the requested resource by another resource must include a <code>Referer:</code>-header. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.2">RFC 7231 Section 5.5.2</link> stay valid.</para></listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term><code>From:</code></term>
+                                <listitem><para>Any client may send a <code>From:</code>-header to allow contacting the operator in case of problems. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.1">RFC 7231 Section 5.5.1</link> stay valid.</para></listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term><code>Accept-Charset:</code></term>
+                                <listitem><para>All clients should send a <code>Accept-Charset:</code>-header to inform the server about charsets the client supports. Every client must support UTF-8. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.3.3">RFC 7231 Section 5.3.3</link> stay valid.</para></listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term><code>Accept-Language:</code></term>
+                                <listitem><para>All clients should send a <code>Accept-Language:</code>-header. This allows to the server to select a response in a language understood by the operator. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.5">RFC 7231 Section 5.5.5</link> stay valid.</para></listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </para>
                 </formalpara>
             </section>
             <section>
