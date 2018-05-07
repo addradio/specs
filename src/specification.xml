@@ -958,6 +958,40 @@ icy-pub:0
                 </varlistentry>
             </variablelist>
         </section>
+
+        <section>
+            <title>API endpoints</title>
+            <section>
+                <title>General endpoints</title>
+                <para>General endpoints operate on the server as a whole. They <emphasis>do not accept</emphasis> a <parameter>mount</parameter> parameter.</para>
+                <variablelist>
+                    <varlistentry>
+                        <term><function></function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                </variablelist>
+            </section>
+            <section>
+                <title>Mount specific endpoints</title>
+                <para>Mount speciffic endpoints operate on specific mounts. Therefore they <emphasis>require</emphasis> a <parameter>mount</parameter> parameter.</para>
+                <variablelist>
+                    <varlistentry>
+                        <term><function></function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                </variablelist>
+            </section>
+            <section>
+                <title>Hybrid endpints</title>
+                <para>Hybrid endpoints operate on all mounts or a specific one. They <emphasis>optionally</emphasis> take a <parameter>mount</parameter> parameter.</para>
+                <variablelist>
+                    <varlistentry>
+                        <term><function></function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                </variablelist>
+            </section>
+        </section>
     </chapter>
 
     <appendix>
