@@ -948,6 +948,16 @@ icy-pub:0
         <para>Both API and administration interface are mounted in the virtual directory <code>/admin</code> on the server. The administration interface is for administrator interaction only. It's pages are not machine readable. For machine readable access the API is used.</para>
         <para>The API defines serveral endpoints. Each endpoint provides access to a specific aspect of the server. Most endpoints return data as XML. Some endpoints may also return plain text. Most endpoints require data. Those data can be provided by the client as GET or POST parameters. POST must not be used if a server if a server does not post POST in the <code>Allow:</code>-header for that resource.</para>
         <tip>A client can try a request using POST and retry using GET if the requested failed.</tip>
+
+        <section>
+            <title>Common parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term><code>mount</code></term>
+                    <listitem><para>The mount parameter is used to select the mount the operation is applied to. For requests that list data this filters the list to the given mountpoint by selecting only the given one. This parameter most not be used more than once.</para></listitem>
+                </varlistentry>
+            </variablelist>
+        </section>
     </chapter>
     <appendix>
         <title>Tested and Certified Source Clients</title>
