@@ -971,15 +971,73 @@ icy-pub:0
                 <variablelist>
                     <varlistentry>
                         <term><function>reloadconfig</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This API endpoint queues reload of the config.</para>
+                            <note>The config reload is only queued. The server has likely not yet reloaded the config when sending the reply to the client.</note>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>This endpoint requires no parameters.</para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                     <varlistentry>
                         <term><function>listmounts</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This lists active mountpoints on the server. The server my exclude mounts that are hidden to the user issuing the request as well as mounts that are inactive.</para>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>This endpoint requires no parameters.</para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                     <varlistentry>
                         <term><function>manageauth</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This endpoints allows to alter roles.</para>
+                            <note>This is not available in Icecast2 before 2.5.0-beta.1.</note>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term><parameter>id</parameter></term>
+                                            <listitem><para>This is the ID of the role to modify. The ID can be found in successful responses to requests to endpoint <function>stats</function>. This parameter is required.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><parameter>action</parameter></term>
+                                            <listitem><para>This is the action to perform. If not given a default of <constant>list</constant> is used.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><parameter>username</parameter></term>
+                                            <listitem><para>The name of the user to act on if any.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><parameter>password</parameter></term>
+                                            <listitem><para>The new password for the user if any.</para></listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                </para>
+                            </formalpara>
+                            <formalpara>
+                                <title>Actions</title>
+                                <para>
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term><constant>list</constant></term>
+                                            <listitem><para>List all users in the corresponding role. Not supported by all roles types.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><constant>add</constant></term>
+                                            <listitem><para>Add the given user to the role. This can not be used to update the user's password. Not supported by all roles types.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><constant>delete</constant></term>
+                                            <listitem><para>Delete the named user from the role. Not supported by all roles types.</para></listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                </para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                 </variablelist>
             </section>
@@ -989,27 +1047,103 @@ icy-pub:0
                 <variablelist>
                     <varlistentry>
                         <term><function>listclients</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem><para>This endpoint lists the listeners connected to a specific source.</para></listitem>
                     </varlistentry>
                     <varlistentry>
                         <term><function>moveclients</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This endpoint moves all clients from the source pointed to by <parameter>mount</parameter> </para>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term><parameter>destination</parameter></term>
+                                            <listitem><para>The mountpoint to move the listeners to.</para></listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                </para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                     <varlistentry>
                         <term><function>killclient</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This kicks a listener client off the stream.</para>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term><parameter>id</parameter></term>
+                                            <listitem><para>This is the ID of the client to kill. The ID can be obtained using the <function>listclients</function> endpoint.</para></listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                </para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                     <varlistentry>
                         <term><function>killsource</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This kills the source connection, emulating the effect of the source client disconnecting uncleanly.</para>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>This endpoint requires no additional parameters.</para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                     <varlistentry>
                         <term><function>fallbacks</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This endpoint replaces the currently set fallback for the given mount with some other mountpoint.</para>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term><parameter>fallback</parameter></term>
+                                            <listitem><para>The mountpoint that should be set as fallback.</para></listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                </para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                     <varlistentry>
                         <term><function>metadata</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This alters the metadata for ICY streams only. Other streams have metadata provided by the encoder.</para>
+                            <warning>This endpoint must not be used with any supported streaming format.</warning>
+                            <note>It is considered an error to use this endpoint with streams generated using PUT.</note>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term><parameter>mode</parameter></term>
+                                            <listitem><para>This parameter is required. It must have the fixed value of <constant>updinfo</constant></para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><parameter>song</parameter></term>
+                                            <listitem><para>This is an alias for <parameter>title</parameter>.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><parameter>title</parameter></term>
+                                            <listitem><para>Sets the title of the current track.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><parameter>artist</parameter></term>
+                                            <listitem><para>Sets the artist of the current track.</para></listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term><parameter>charset</parameter></term>
+                                            <listitem><para>Charset <parameter>title</parameter> and <parameter>artist</parameter> are encoded in.</para></listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                </para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                 </variablelist>
             </section>
@@ -1019,7 +1153,13 @@ icy-pub:0
                 <variablelist>
                     <varlistentry>
                         <term><function>stats</function></term>
-                        <listitem><para></para></listitem>
+                        <listitem>
+                            <para>This generates is list of information about the current server state. The provided information may be filtered by the server according to the user's permissions.</para>
+                            <formalpara>
+                                <title>Parameters</title>
+                                <para>This endpoint requires no additional parameters.</para>
+                            </formalpara>
+                        </listitem>
                     </varlistentry>
                 </variablelist>
             </section>
