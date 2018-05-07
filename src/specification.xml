@@ -953,7 +953,7 @@ icy-pub:0
             <title>Common parameters</title>
             <variablelist>
                 <varlistentry>
-                    <term><code>mount</code></term>
+                    <term><parameter>mount</parameter></term>
                     <listitem><para>The mount parameter is used to select the mount the operation is applied to. For requests that list data this filters the list to the given mountpoint by selecting only the given one. This parameter most not be used more than once.</para></listitem>
                 </varlistentry>
             </variablelist>
