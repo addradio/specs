@@ -966,7 +966,15 @@ icy-pub:0
                 <para>General endpoints operate on the server as a whole. They <emphasis>do not accept</emphasis> a <parameter>mount</parameter> parameter.</para>
                 <variablelist>
                     <varlistentry>
-                        <term><function></function></term>
+                        <term><function>reloadconfig</function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><function>listmounts</function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><function>manageauth</function></term>
                         <listitem><para></para></listitem>
                     </varlistentry>
                 </variablelist>
@@ -976,7 +984,27 @@ icy-pub:0
                 <para>Mount speciffic endpoints operate on specific mounts. Therefore they <emphasis>require</emphasis> a <parameter>mount</parameter> parameter.</para>
                 <variablelist>
                     <varlistentry>
-                        <term><function></function></term>
+                        <term><function>listclients</function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><function>moveclients</function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><function>killclient</function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><function>killsource</function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><function>fallbacks</function></term>
+                        <listitem><para></para></listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><function>metadata</function></term>
                         <listitem><para></para></listitem>
                     </varlistentry>
                 </variablelist>
@@ -986,7 +1014,7 @@ icy-pub:0
                 <para>Hybrid endpoints operate on all mounts or a specific one. They <emphasis>optionally</emphasis> take a <parameter>mount</parameter> parameter.</para>
                 <variablelist>
                     <varlistentry>
-                        <term><function></function></term>
+                        <term><function>stats</function></term>
                         <listitem><para></para></listitem>
                     </varlistentry>
                 </variablelist>
