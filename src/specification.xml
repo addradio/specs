@@ -224,26 +224,6 @@
                                 <row>
                                     <entry>404</entry>
                                     <entry>File Not Found</entry>
-                                    <entry>f966870a-e3d1-4a33-a728-f0cbac0b90f3</entry>
-                                    <entry>Error report</entry>
-                                </row>
-                                <row>
-                                    <entry spanname="textspan">Source related API or admin command not found.</entry>
-                                </row>
-
-                                <row>
-                                    <entry>404</entry>
-                                    <entry>File Not Found</entry>
-                                    <entry>a96442e7-ca74-4ef7-8fcf-69ed057a5841</entry>
-                                    <entry>Error report</entry>
-                                </row>
-                                <row>
-                                    <entry spanname="textspan">Global API or admin command not found.</entry>
-                                </row>
-
-                                <row>
-                                    <entry>404</entry>
-                                    <entry>File Not Found</entry>
                                     <entry>2f51a026-02e4-4fe4-bf9d-cc16557b3b65</entry>
                                     <entry>Error report</entry>
                                 </row>
