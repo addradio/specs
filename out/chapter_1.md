@@ -10,6 +10,35 @@ All Icecast2 clients connect to Icecast2 using the same server address. Mountpoi
 
 Icecast2 implements HTTP/1.0. It understands most HTTP/1.1 requests. If interpretation of a request fails Icecast2 will send a HTTP/1.0 error reply depending on the reason of failure. If Icecast2 can not assume a HTTP client or the error occurs in early stages of client handling Icecast2 may drop the connection without sending data to the client.
 
+### Request headers
+
+Any kind of client must send a proper HTTP request. There are some header fields a client must or should include.
+
+**Mandatory header fields.**
+
+`Host:`  
+Any client must send a `Host:`-header. If the underlying transport supports ports the port must be given in the header. The client must send the `Host:`-headr als the first header after the request line. All other considerations of [RFC 7230 Section 5.4] stay valid.
+
+`Accept:`  
+Any client must send a `Accept:`-header listening acceptable content encodings. All other considerations of [RFC 7231 Section 5.4.2] stay valid.
+
+`User-Agent:`  
+Any cliet must send a `User-Agent:`-header. All other considerations of [RFC 7231 Section 5.5.3] stay valid.
+
+**Optional header fields.**
+
+`Referer:`  
+Any client that was directed to the requested resource by another resource must include a `Referer:`-header. All other considerations of [RFC 7231 Section 5.5.2] stay valid.
+
+`From:`  
+Any client may send a `From:`-header to allow contacting the operator in case of problems. All other considerations of [RFC 7231 Section 5.5.1] stay valid.
+
+`Accept-Charset:`  
+All clients should send a `Accept-Charset:`-header to inform the server about charsets the client supports. Every client must support UTF-8. All other considerations of [RFC 7231 Section 5.3.3] stay valid.
+
+`Accept-Language:`  
+All clients should send a `Accept-Language:`-header. This allows to the server to select a response in a language understood by the operator. All other considerations of [RFC 7231 Section 5.5.5] stay valid.
+
 ### Status codes
 
 The server may respond with any [RFC 7231 Section 6] status code. Below is a incomplete list of important status codes:
@@ -44,10 +73,6 @@ The server may respond with any [RFC 7231 Section 6] status code. Below is a inc
 | No or invalid authentication data was provided. See also Section *Authentication*.                                                                                      |
 | 404                                                                                                                                                                     | File Not Found                | 18c32b43-0d8e-469d-b434-10133cdd06ad | Error report         |
 | The requested resource was not found on the server.                                                                                                                     |
-| 404                                                                                                                                                                     | File Not Found                | f966870a-e3d1-4a33-a728-f0cbac0b90f3 | Error report         |
-| Source related API or admin command not found.                                                                                                                          |
-| 404                                                                                                                                                                     | File Not Found                | a96442e7-ca74-4ef7-8fcf-69ed057a5841 | Error report         |
-| Global API or admin command not found.                                                                                                                                  |
 | 404                                                                                                                                                                     | File Not Found                | 2f51a026-02e4-4fe4-bf9d-cc16557b3b65 | Error report         |
 | Source does not exist.                                                                                                                                                  |
 | 404                                                                                                                                                                     | File Not Found                | c5f1ee06-46a0-4697-9f01-6e9fc333d555 | Error report         |
@@ -177,6 +202,13 @@ The following content types are support for streaming. Other content types my be
 
 [1] This is similar to what other protocols call "STARTTLS".
 
+  [RFC 7230 Section 5.4]: https://tools.ietf.org/html/rfc7230#section-5.4
+  [RFC 7231 Section 5.4.2]: https://tools.ietf.org/html/rfc7231#section-5.3.2
+  [RFC 7231 Section 5.5.3]: https://tools.ietf.org/html/rfc7231#section-5.5.3
+  [RFC 7231 Section 5.5.2]: https://tools.ietf.org/html/rfc7231#section-5.5.2
+  [RFC 7231 Section 5.5.1]: https://tools.ietf.org/html/rfc7231#section-5.5.1
+  [RFC 7231 Section 5.3.3]: https://tools.ietf.org/html/rfc7231#section-5.3.3
+  [RFC 7231 Section 5.5.5]: https://tools.ietf.org/html/rfc7231#section-5.5.5
   [RFC 7231 Section 6]: https://tools.ietf.org/html/rfc7231#section-6
   [RFC 7233 Section 4.1]: https://tools.ietf.org/html/rfc7233#section-4.1
   [RFC 7617]: https://tools.ietf.org/html/rfc7617
