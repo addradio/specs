@@ -30,6 +30,8 @@ Sending data to the server is done by:
 
 8.  Client and server terminate the connection.
 
+![ Transaction states for source connections ]
+
 ### 100-continue
 
 The client should ask the server to send a 100-continue reply. This allows the server to reject the stream cleanly in case there is any problem. Such problems could be e.g. mismatch of credentials or unsupported parameters. Then the 100-continue reply is requested the server may reply with a 100-continue. The client should wait a reasonable long time before starting to provide data if no reply has been received yet.
@@ -142,3 +144,5 @@ After the client finished the server acknowledges the request and data by return
     Pragma: no-cache
     Access-Control-Allow-Origin: *
     <blank line>
+
+  [ Transaction states for source connections ]: ../out/PUT.png

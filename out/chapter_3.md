@@ -8,6 +8,8 @@ Protocol Specification
 
 Listener clients request the corresponding stream using HTTP GET. Clients should send a HTTP/1.1 request. Icecast2 will respond with the stream if the request is successful or corresponding error code if not. Icecast2 may also require the client to authenticate before allowing access.
 
+![ Transaction states for listener connections ]
+
 Examples
 --------
 
@@ -120,3 +122,5 @@ The server responds with the stream mounted on the provided resource.
     icy-pub:0
     <blank line>
     <data>
+
+  [ Transaction states for listener connections ]: ../out/Listen.png
