@@ -483,6 +483,19 @@
                 <title>Metadata</title>
                 <para>Metadata is an important part of modern audio and video streaming. With Icecast2 metadata are transported as part of the transported datastream. All supported formats support metadata. Only for non-supported MP3 and AAC (and derivates) streams the ICY protocol must be used. This protocol is not part of this specification. For details see the corresponding documentation of the used streaming format. For ICY see the appendix in this document.</para>
             </section>
+
+            <section>
+                <title>Tansport states</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="../out/Transport.png" />
+                    </imageobject>
+                    <caption>
+                        <para>Transport connection states</para>
+                        <para>Physical connection refers to OSI layer 1 to 4 while logical connecting refering to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the phsyical connection.</para>
+                    </caption>
+                </mediaobject>
+            </section>
         </section>
 
         <section>
@@ -696,6 +709,14 @@
                         <listitem><para>Client and server terminate the connection.</para></listitem>
                     </orderedlist>
                 </para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="../out/PUT.png" />
+                    </imageobject>
+                    <caption>
+                        <para>Transaction states for source connections</para>
+                    </caption>
+                </mediaobject>
             </section>
             <section xml:id="S100continue">
                 <title xml:id="S100continue.title">100-continue</title>
@@ -810,6 +831,14 @@ Access-Control-Allow-Origin: *
         <section>
             <title>Protocol Specification</title>
             <para>Listener clients request the corresponding stream using HTTP GET. Clients should send a HTTP/1.1 request. Icecast2 will respond with the stream if the request is successful or corresponding error code if not. Icecast2 may also require the client to authenticate before allowing access.</para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../out/Listen.png" />
+                </imageobject>
+                <caption>
+                    <para>Transaction states for listener connections</para>
+                </caption>
+            </mediaobject>
         </section>
 
         <section>
@@ -932,6 +961,14 @@ icy-pub:0
         <para>Both API and administration interface are mounted in the virtual directory <code>/admin</code> on the server. The administration interface is for administrator interaction only. It's pages are not machine readable. For machine readable access the API is used.</para>
         <para>The API defines serveral endpoints. Each endpoint provides access to a specific aspect of the server. Most endpoints return data as XML. Some endpoints may also return plain text. Most endpoints require data. Those data can be provided by the client as GET or POST parameters. POST must not be used if a server if a server does not post POST in the <code>Allow:</code>-header for that resource.</para>
         <tip>A client can try a request using POST and retry using GET if the requested failed.</tip>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../out/API.png" />
+            </imageobject>
+            <caption>
+                <para>Transaction states for API connections</para>
+            </caption>
+        </mediaobject>
 
         <section>
             <title>Common parameters</title>
