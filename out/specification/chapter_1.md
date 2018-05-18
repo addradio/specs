@@ -216,4 +216,4 @@ The following content types are support for streaming. Other content types my be
   [RFC 7231 Section 6]: https://tools.ietf.org/html/rfc7231#section-6
   [RFC 7233 Section 4.1]: https://tools.ietf.org/html/rfc7233#section-4.1
   [RFC 7617]: https://tools.ietf.org/html/rfc7617
-  [ Transport connection states Physical connection refers to OSI layer 1 to 4 while logical connecting refering to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the phsyical connection. ]: ../out/Transport.png
+  [ Transport connection states Physical connection refers to OSI layer 1 to 4 while logical connecting refering to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the phsyical connection. ]: ../../out/Transport.png

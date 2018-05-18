@@ -5,7 +5,8 @@ the AddRadio network.
 
 Specification | Description
 ------------- | ------------
-[**Technical specification for interfacing with the AddRadio network**](out/index.md)  | Detailed information about interacting with the AddRadio Icecast platform.
+[**Technical specification for interfacing with the AddRadio network**](out/specification/index.md)  | Detailed information about interacting with the AddRadio Icecast platform.
+[**Tested and Certified Clients**](out/tested-clients/index.md)  | Lists of clients supporting the platform including test results
 
 ## Credentials
 ### Authors

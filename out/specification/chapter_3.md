@@ -123,4 +123,4 @@ The server responds with the stream mounted on the provided resource.
     <blank line>
     <data>
 
-  [ Transaction states for listener connections ]: ../out/Listen.png
+  [ Transaction states for listener connections ]: ../../out/Listen.png

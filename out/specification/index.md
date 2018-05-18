@@ -5,5 +5,4 @@
 * [Ingesting Source Streams to Icecast2](chapter_2.md)
 * [Accessing a Icecast2 stream as listener](chapter_3.md)
 * [Accessing administration interface and API](chapter_4.md)
-* Appendix [Tested and Certified Source Clients](appendix_1.md)
-* Appendix [ICY Protocol](appendix_2.md)
+* Appendix [ICY Protocol](appendix_1.md)

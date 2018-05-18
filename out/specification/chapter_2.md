@@ -145,4 +145,4 @@ After the client finished the server acknowledges the request and data by return
     Access-Control-Allow-Origin: *
     <blank line>
 
-  [ Transaction states for source connections ]: ../out/PUT.png
+  [ Transaction states for source connections ]: ../../out/PUT.png

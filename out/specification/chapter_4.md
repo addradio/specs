@@ -151,4 +151,4 @@ This generates is list of information about the current server state. The provid
 
 This endpoint requires no additional parameters.
 
-  [ Transaction states for API connections ]: ../out/API.png
+  [ Transaction states for API connections ]: ../../out/API.png
