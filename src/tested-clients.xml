@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2.0//EN" "http://docbook.org/xml/4.2/docbookx.dtd">
+
+<book xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Tested and Certified Clients</title>
+    <chapter>
+        <title>Source clients</title>
+    </chapter>
+</book>

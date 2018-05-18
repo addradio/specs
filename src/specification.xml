@@ -1184,10 +1184,6 @@ icy-pub:0
     </chapter>
 
     <appendix>
-        <title>Tested and Certified Source Clients</title>
-    </appendix>
-
-    <appendix>
         <title>ICY Protocol</title>
         <warning>This Appendix is informational only. It is not part of the specification.</warning>
         <para>The ICY source protocol is must not be used. The ICY listener protocol is however used for metadata transfer from Icecast2 to listeners for non-supported streaming formats such as MP3 and AAC. Those formats lack native support for metadata. Sources providing such formats to Icecast2 must use the described protocol using HTTP PUT. In addition they can use the corresponding API endpoint for metadata updates.</para>
