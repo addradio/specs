@@ -26,7 +26,7 @@ out/%.md: BASENAME = $(shell basename $@ .md)
 out/%.md: TYPE=$(firstword $(subst _, ,$(BASENAME)))
 out/%.md: INDEX=$(lastword $(subst _, ,$(BASENAME)))
 out/%.md: $(SOURCES_DOCBOOK)
-	xsltproc --stringparam type $(TYPE) --param index $(INDEX) extract.xsl $+ | pandoc -f docbook -t markdown_github --reference-links | sed 's#\(/out/.*\.png\)#/..\1#g' > $@
+	xsltproc --stringparam type $(TYPE) --param index $(INDEX) extract.xsl src/$(shell basename $(shell dirname $@)).xml | pandoc -f docbook -t markdown_github --reference-links | sed 's#\(/out/.*\.png\)#/..\1#g' > $@
 
 out/%/index.md: src/%.xml
 	xsltproc index.xsl $+ > $@
