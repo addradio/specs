@@ -17,10 +17,11 @@ html: all $(TARGETS_HTML)
 out:
 	mkdir -vp out
 
-out/appendix_%.md: $(SOURCES_DOCBOOK)
-	xsltproc --stringparam type appendix --param index $* extract.xsl $+ | pandoc -f docbook -t markdown_github --reference-links -o $@
-out/chapter_%.md: $(SOURCES_DOCBOOK)
-	xsltproc --stringparam type chapter --param index $* extract.xsl $+ | pandoc -f docbook -t markdown_github --reference-links -o $@
+out/%.md: BASENAME = $(shell basename $@ .md)
+out/%.md: TYPE=$(firstword $(subst _, ,$(BASENAME)))
+out/%.md: INDEX=$(lastword $(subst _, ,$(BASENAME)))
+out/%.md: $(SOURCES_DOCBOOK)
+	xsltproc --stringparam type $(TYPE) --param index $(INDEX) extract.xsl $+ | pandoc -f docbook -t markdown_github --reference-links -o $@
 
 out/index.md: $(SOURCES_DOCBOOK)
 	xsltproc index.xsl $+ > $@
