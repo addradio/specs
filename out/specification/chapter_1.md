@@ -17,13 +17,13 @@ Any kind of client must send a proper HTTP request. There are some header fields
 **Mandatory header fields.**
 
 `Host:`  
-Any client must send a `Host:`-header. If the underlying transport supports ports the port must be given in the header. The client must send the `Host:`-headr als the first header after the request line. All other considerations of [RFC 7230 Section 5.4] stay valid.
+Any client must send a `Host:`-header. If the underlying transport supports ports the port must be given in the header. The client must send the `Host:`-header as the first header after the request line. All other considerations of [RFC 7230 Section 5.4] stay valid.
 
 `Accept:`  
 Any client must send a `Accept:`-header listening acceptable content encodings. All other considerations of [RFC 7231 Section 5.4.2] stay valid.
 
 `User-Agent:`  
-Any cliet must send a `User-Agent:`-header. All other considerations of [RFC 7231 Section 5.5.3] stay valid.
+Any client must send a `User-Agent:`-header. All other considerations of [RFC 7231 Section 5.5.3] stay valid.
 
 **Optional header fields.**
 
@@ -153,11 +153,11 @@ The transfer encoding is announced by the server using the `Accept-Encoding` HTT
 
 ### Metadata
 
-Metadata is an important part of modern audio and video streaming. With Icecast2 metadata are transported as part of the transported datastream. All supported formats support metadata. Only for non-supported MP3 and AAC (and derivates) streams the ICY protocol must be used. This protocol is not part of this specification. For details see the corresponding documentation of the used streaming format. For ICY see the appendix in this document.
+Metadata is an important part of modern audio and video streaming. With Icecast2 metadata are transported as part of the transported datastream. All supported formats support metadata. Only for non-supported MP3 and AAC (and derivatives) streams the ICY protocol must be used. This protocol is not part of this specification. For details see the corresponding documentation of the used streaming format. For ICY see the appendix in this document.
 
-### Tansport states
+### Transport states
 
-![ Transport connection states Physical connection refers to OSI layer 1 to 4 while logical connecting refering to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the phsyical connection. ]
+![ Transport connection states Physical connection refers to OSI layer 1 to 4 while logical connecting referring to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the physical connection. ]
 
 TLS
 ---
@@ -216,4 +216,4 @@ The following content types are support for streaming. Other content types my be
   [RFC 7231 Section 6]: https://tools.ietf.org/html/rfc7231#section-6
   [RFC 7233 Section 4.1]: https://tools.ietf.org/html/rfc7233#section-4.1
   [RFC 7617]: https://tools.ietf.org/html/rfc7617
-  [ Transport connection states Physical connection refers to OSI layer 1 to 4 while logical connecting refering to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the phsyical connection. ]: ../../out/Transport.png
+  [ Transport connection states Physical connection refers to OSI layer 1 to 4 while logical connecting referring to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the physical connection. ]: ../../out/Transport.png

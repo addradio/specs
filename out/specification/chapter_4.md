@@ -3,7 +3,7 @@ Accessing administration interface and API
 
 Both API and administration interface are mounted in the virtual directory `/admin` on the server. The administration interface is for administrator interaction only. It's pages are not machine readable. For machine readable access the API is used.
 
-The API defines serveral endpoints. Each endpoint provides access to a specific aspect of the server. Most endpoints return data as XML. Some endpoints may also return plain text. Most endpoints require data. Those data can be provided by the client as GET or POST parameters. POST must not be used if a server if a server does not post POST in the `Allow:`-header for that resource.
+The API defines several endpoints. Each endpoint provides access to a specific aspect of the server. Most endpoints return data as XML. Some endpoints may also return plain text. Most endpoints require data. Those data can be provided by the client as GET or POST parameters. POST must not be used if a server if a server does not post POST in the `Allow:`-header for that resource.
 
 > **Tip**
 >
@@ -25,11 +25,11 @@ API endpoints
 General endpoints operate on the server as a whole. They *do not accept* a `mount` parameter.
 
 `reloadconfig`  
-This API endpoint queues reload of the config.
+This API endpoint queues reload of the configuration.
 
 > **Note**
 >
-> The config reload is only queued. The server has likely not yet reloaded the config when sending the reply to the client.
+> The configuration reload is only queued. The server has likely not yet reloaded the configuration when sending the reply to the client.
 
 **Parameters.**
 
@@ -76,7 +76,7 @@ Delete the named user from the role. Not supported by all roles types.
 
 ### Mount specific endpoints
 
-Mount speciffic endpoints operate on specific mounts. Therefore they *require* a `mount` parameter.
+Mount specific endpoints operate on specific mounts. Therefore they *require* a `mount` parameter.
 
 `listclients`  
 This endpoint lists the listeners connected to a specific source.

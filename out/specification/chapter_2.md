@@ -20,7 +20,7 @@ Sending data to the server is done by:
 
 3.  Optionally the server may refuse the request if authentication is required.
 
-4.  If the server refused the request because of missing authenticationtThe client then repeats the request with authentication data provided.
+4.  If the server refused the request because of missing authentication, the client then repeats the request with authentication data provided.
 
 5.  Optionally the server replies with a 100-continue message.
 
