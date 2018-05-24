@@ -19,7 +19,7 @@
                         <variablelist>
                             <varlistentry>
                                 <term><code>Host:</code></term>
-                                <listitem><para>Any client must send a <code>Host:</code>-header. If the underlying transport supports ports the port must be given in the header. The client must send the <code>Host:</code>-headr als the first header after the request line. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7230#section-5.4">RFC 7230 Section 5.4</link> stay valid.</para></listitem>
+                                <listitem><para>Any client must send a <code>Host:</code>-header. If the underlying transport supports ports the port must be given in the header. The client must send the <code>Host:</code>-header as the first header after the request line. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7230#section-5.4">RFC 7230 Section 5.4</link> stay valid.</para></listitem>
                             </varlistentry>
                             <varlistentry>
                                 <term><code>Accept:</code></term>
@@ -27,7 +27,7 @@
                             </varlistentry>
                             <varlistentry>
                                 <term><code>User-Agent:</code></term>
-                                <listitem><para>Any cliet must send a <code>User-Agent:</code>-header. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.3">RFC 7231 Section 5.5.3</link> stay valid.</para></listitem>
+                                <listitem><para>Any client must send a <code>User-Agent:</code>-header. All other considerations of <link xlink:href="https://tools.ietf.org/html/rfc7231#section-5.5.3">RFC 7231 Section 5.5.3</link> stay valid.</para></listitem>
                             </varlistentry>
                         </variablelist>
                     </para>
@@ -481,18 +481,18 @@
 
             <section>
                 <title>Metadata</title>
-                <para>Metadata is an important part of modern audio and video streaming. With Icecast2 metadata are transported as part of the transported datastream. All supported formats support metadata. Only for non-supported MP3 and AAC (and derivates) streams the ICY protocol must be used. This protocol is not part of this specification. For details see the corresponding documentation of the used streaming format. For ICY see the appendix in this document.</para>
+                <para>Metadata is an important part of modern audio and video streaming. With Icecast2 metadata are transported as part of the transported datastream. All supported formats support metadata. Only for non-supported MP3 and AAC (and derivatives) streams the ICY protocol must be used. This protocol is not part of this specification. For details see the corresponding documentation of the used streaming format. For ICY see the appendix in this document.</para>
             </section>
 
             <section>
-                <title>Tansport states</title>
+                <title>Transport states</title>
                 <mediaobject>
                     <imageobject>
                         <imagedata fileref="../out/Transport.png" />
                     </imageobject>
                     <caption>
                         <para>Transport connection states</para>
-                        <para>Physical connection refers to OSI layer 1 to 4 while logical connecting refering to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the phsyical connection.</para>
+                        <para>Physical connection refers to OSI layer 1 to 4 while logical connecting referring to any layer 4 to 7 protocol used between the physical connection and HTTP such as TLS. If no such protocol is used the logical connection is considered to share the connection state of the physical connection.</para>
                     </caption>
                 </mediaobject>
             </section>
@@ -702,7 +702,7 @@
                         <listitem><para>Optionally a TLS connection is established between client and server.</para></listitem>
                         <listitem><para>A PUT request is sent by the client without authentication data.</para></listitem>
                         <listitem><para>Optionally the server may refuse the request if authentication is required.</para></listitem>
-                        <listitem><para>If the server refused the request because of missing authenticationtThe client then repeats the request with authentication data provided.</para></listitem>
+                        <listitem><para>If the server refused the request because of missing authentication, the client then repeats the request with authentication data provided.</para></listitem>
                         <listitem><para>Optionally the server replies with a 100-continue message.</para></listitem>
                         <listitem><para>The client sends the stream in negotiated transfer encoding.</para></listitem>
                         <listitem><para>The server replies with a final 200-OK.</para></listitem>
@@ -959,7 +959,7 @@ icy-pub:0
     <chapter>
         <title>Accessing administration interface and API</title>
         <para>Both API and administration interface are mounted in the virtual directory <code>/admin</code> on the server. The administration interface is for administrator interaction only. It's pages are not machine readable. For machine readable access the API is used.</para>
-        <para>The API defines serveral endpoints. Each endpoint provides access to a specific aspect of the server. Most endpoints return data as XML. Some endpoints may also return plain text. Most endpoints require data. Those data can be provided by the client as GET or POST parameters. POST must not be used if a server if a server does not post POST in the <code>Allow:</code>-header for that resource.</para>
+        <para>The API defines several endpoints. Each endpoint provides access to a specific aspect of the server. Most endpoints return data as XML. Some endpoints may also return plain text. Most endpoints require data. Those data can be provided by the client as GET or POST parameters. POST must not be used if a server if a server does not post POST in the <code>Allow:</code>-header for that resource.</para>
         <tip>A client can try a request using POST and retry using GET if the requested failed.</tip>
         <mediaobject>
             <imageobject>
@@ -989,8 +989,8 @@ icy-pub:0
                     <varlistentry>
                         <term><function>reloadconfig</function></term>
                         <listitem>
-                            <para>This API endpoint queues reload of the config.</para>
-                            <note>The config reload is only queued. The server has likely not yet reloaded the config when sending the reply to the client.</note>
+                            <para>This API endpoint queues reload of the configuration.</para>
+                            <note>The configuration reload is only queued. The server has likely not yet reloaded the configuration when sending the reply to the client.</note>
                             <formalpara>
                                 <title>Parameters</title>
                                 <para>This endpoint requires no parameters.</para>
@@ -1060,7 +1060,7 @@ icy-pub:0
             </section>
             <section>
                 <title>Mount specific endpoints</title>
-                <para>Mount speciffic endpoints operate on specific mounts. Therefore they <emphasis>require</emphasis> a <parameter>mount</parameter> parameter.</para>
+                <para>Mount specific endpoints operate on specific mounts. Therefore they <emphasis>require</emphasis> a <parameter>mount</parameter> parameter.</para>
                 <variablelist>
                     <varlistentry>
                         <term><function>listclients</function></term>
