@@ -58,7 +58,7 @@
             </section>
             <section>
                 <title>Status codes</title>
-                <para>The server may respond with any <link xlink:href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231 Section 6</link> status code. Below is a incomplete list of important status codes:
+                <para>The server may respond with any <link xlink:href="https://tools.ietf.org/html/rfc7231#section-6">RFC 7231 Section 6</link> status code. Below is an incomplete list of important status codes:
                     <table>
                         <tgroup rowsep="0">
                             <colspec colname="statuscode" />
@@ -438,7 +438,7 @@
             </section>
             <section>
                 <title>Authentication</title>
-                <para>Depending on operation and resource Icecast2 may require the client to authenticate. If such a resource is accessed in such a operation and no authentication data was sent along with the request Icecast2 will respond with the corresponding error status.</para>
+                <para>Depending on operation and resource Icecast2 may require the client to authenticate. If such a resource is accessed in such an operation and no authentication data was sent along with the request Icecast2 will respond with the corresponding error status.</para>
                 <para>Authentication is based on <link xlink:href="https://tools.ietf.org/html/rfc7617">RFC 7617</link>. The client must send a request with no authentication first. The server will include information in it's error response on how to provide authentication data correctly. This step may be skipped according to the rules in RFC 7617 only.</para>
                 <para>The client must support the "Basic" authentication scheme.</para>
             </section>
@@ -467,7 +467,7 @@
                         </row>
                     </tbody>
                 </table>
-                <warning>Prior to Icecast2 2.5.0-beta.1 the server did not return error in case a unsupported transfer encoding was used by the client. Those servers only support the "identity" encoding.</warning>
+                <warning>Prior to Icecast2 2.5.0-beta.1 the server did not return error in case an unsupported transfer encoding was used by the client. Those servers only support the "identity" encoding.</warning>
                 <note>RFC 7230 removed the "identity" encoding from the standard. See <link xlink:href="https://tools.ietf.org/html/rfc7230#appendix-A.2">RFC 7230 Appendix A.2</link> for details.</note>
                 <tip>
                     <para>
@@ -733,7 +733,7 @@
             <note>This section is not part of the specification.</note>
             <section>
                 <title>Successful communication with Authentication and 100-continue</title>
-                <para>This example demonstrates a successful communication between a Icecast2 server and a client using Authentication and 100-continue.</para>
+                <para>This example demonstrates a successful communication between an Icecast2 server and a client using Authentication and 100-continue.</para>
                 <formalpara>
                     <title>Client to server: Initial request without authentication</title>
                     <para>The client sends an initial request to the server. The request does not contain any authentication data.
@@ -826,7 +826,7 @@ Access-Control-Allow-Origin: *
         </section>
     </chapter>
     <chapter>
-        <title>Accessing a Icecast2 stream as listener</title>
+        <title>Accessing an Icecast2 stream as listener</title>
         <para>Listener clients (audio and video) request streams by using HTTP GET.</para>
         <section>
             <title>Protocol Specification</title>
@@ -845,7 +845,7 @@ Access-Control-Allow-Origin: *
             <title>Examples</title>
             <section>
                 <title>Successful communication without Authentication</title>
-                <para>This example demonstrates a successful communication between a Icecast2 server and a client.</para>
+                <para>This example demonstrates a successful communication between an Icecast2 server and a client.</para>
                 <formalpara>
                     <title>Client to server: Client requests the stream</title>
                     <para>The client sends it request for the given stream.
@@ -883,7 +883,7 @@ icy-pub:0
             </section>
             <section>
                 <title>Successful communication with Authentication</title>
-                <para>This example demonstrates a successful communication between a Icecast2 server and a client. Authorization is used.</para>
+                <para>This example demonstrates a successful communication between an Icecast2 server and a client. Authorization is used.</para>
                 <formalpara>
                     <title>Client to server: The client requests the stream with no authentication</title>
                     <para>The client sends the request for the stream without authentication data provided.
