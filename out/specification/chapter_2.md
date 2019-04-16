@@ -55,7 +55,7 @@ This section lists example communication with an Icecast2 server for sending sou
 
 ### Successful communication with Authentication and 100-continue
 
-This example demonstrates a successful communication between a Icecast2 server and a client using Authentication and 100-continue.
+This example demonstrates a successful communication between an Icecast2 server and a client using Authentication and 100-continue.
 
 **Client to server: Initial request without authentication.**
 

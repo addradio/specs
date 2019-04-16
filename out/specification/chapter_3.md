@@ -1,5 +1,5 @@
-Accessing a Icecast2 stream as listener
-=======================================
+Accessing an Icecast2 stream as listener
+========================================
 
 Listener clients (audio and video) request streams by using HTTP GET.
 
@@ -15,7 +15,7 @@ Examples
 
 ### Successful communication without Authentication
 
-This example demonstrates a successful communication between a Icecast2 server and a client.
+This example demonstrates a successful communication between an Icecast2 server and a client.
 
 **Client to server: Client requests the stream.**
 
@@ -53,7 +53,7 @@ The server does have the corresponding resource and allows access. Therefore it 
 
 ### Successful communication with Authentication
 
-This example demonstrates a successful communication between a Icecast2 server and a client. Authorization is used.
+This example demonstrates a successful communication between an Icecast2 server and a client. Authorization is used.
 
 **Client to server: The client requests the stream with no authentication.**
 

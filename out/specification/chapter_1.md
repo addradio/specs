@@ -41,7 +41,7 @@ All clients should send a `Accept-Language:`-header. This allows to the server t
 
 ### Status codes
 
-The server may respond with any [RFC 7231 Section 6] status code. Below is a incomplete list of important status codes:
+The server may respond with any [RFC 7231 Section 6] status code. Below is an incomplete list of important status codes:
 
 | Status Code                                                                                                                                                             | Reason Phrase                 | UUID                                 | Body                 |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|--------------------------------------|----------------------|
@@ -118,7 +118,7 @@ The server may respond with any [RFC 7231 Section 6] status code. Below is a inc
 
 ### Authentication
 
-Depending on operation and resource Icecast2 may require the client to authenticate. If such a resource is accessed in such a operation and no authentication data was sent along with the request Icecast2 will respond with the corresponding error status.
+Depending on operation and resource Icecast2 may require the client to authenticate. If such a resource is accessed in such an operation and no authentication data was sent along with the request Icecast2 will respond with the corresponding error status.
 
 Authentication is based on [RFC 7617]. The client must send a request with no authentication first. The server will include information in it's error response on how to provide authentication data correctly. This step may be skipped according to the rules in RFC 7617 only.
 
@@ -137,7 +137,7 @@ The transfer encoding is announced by the server using the `Accept-Encoding` HTT
 
 > **Warning**
 >
-> Prior to Icecast2 2.5.0-beta.1 the server did not return error in case a unsupported transfer encoding was used by the client. Those servers only support the "identity" encoding.
+> Prior to Icecast2 2.5.0-beta.1 the server did not return error in case an unsupported transfer encoding was used by the client. Those servers only support the "identity" encoding.
 
 > **Note**
 >
